@@ -170,6 +170,55 @@ final class Workout {
 }
 
 @Model
+final class WorkoutTemplate {
+    @Attribute(.unique) var id: UUID
+    var name: String
+    var createdAt: Date
+    var updatedAt: Date
+    @Relationship(deleteRule: .cascade, inverse: \WorkoutTemplateExercise.template) var exercises: [WorkoutTemplateExercise]
+
+    init(
+        id: UUID = UUID(),
+        name: String,
+        createdAt: Date = .now,
+        updatedAt: Date = .now,
+        exercises: [WorkoutTemplateExercise] = []
+    ) {
+        self.id = id
+        self.name = name
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.exercises = exercises
+    }
+}
+
+@Model
+final class WorkoutTemplateExercise {
+    @Attribute(.unique) var id: UUID
+    var orderIndex: Int
+    var exercise: Exercise?
+    var exerciseNameSnapshot: String
+    var plannedSetCount: Int = 1
+    var template: WorkoutTemplate?
+
+    init(
+        id: UUID = UUID(),
+        orderIndex: Int,
+        exercise: Exercise?,
+        exerciseNameSnapshot: String,
+        plannedSetCount: Int = 1,
+        template: WorkoutTemplate? = nil
+    ) {
+        self.id = id
+        self.orderIndex = orderIndex
+        self.exercise = exercise
+        self.exerciseNameSnapshot = exerciseNameSnapshot
+        self.plannedSetCount = plannedSetCount
+        self.template = template
+    }
+}
+
+@Model
 final class WorkoutExercise {
     @Attribute(.unique) var id: UUID
     var orderIndex: Int

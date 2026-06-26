@@ -38,7 +38,10 @@ enum RewardService {
         let remainingCapacity = max(0, preferences.maximumEarnedMinutesPerDay - record.minutesEarned)
         guard remainingCapacity > 0 else { throw RewardError.dailyLimitReached }
 
-        let grantedMinutes = min(preferences.minutesPerChallenge, remainingCapacity)
+        let earnedMinutes = max(0, challenge.completedRepetitions)
+        let grantedMinutes = min(earnedMinutes, remainingCapacity)
+        guard grantedMinutes > 0 else { throw RewardError.dailyLimitReached }
+
         challenge.wasRewarded = true
         challenge.minutesAwarded = grantedMinutes
         record.minutesEarned += grantedMinutes
@@ -66,13 +69,29 @@ enum RewardService {
         try context.save()
 
         let explanation: String
-        if grantedMinutes < preferences.minutesPerChallenge {
-            explanation = "Daily limit nearly reached. Awarded \(grantedMinutes) minutes instead of \(preferences.minutesPerChallenge)."
+        if grantedMinutes < earnedMinutes {
+            explanation = "Daily limit nearly reached. Awarded \(grantedMinutes) minutes instead of \(earnedMinutes)."
         } else {
-            explanation = "Challenge complete. Awarded \(grantedMinutes) minutes."
+            explanation = "Challenge complete. Awarded \(grantedMinutes) minutes, one per push-up."
         }
 
         return RewardOutcome(grantedMinutes: grantedMinutes, explanation: explanation)
+    }
+
+    @MainActor
+    static func expireFinishedSessions(context: ModelContext) {
+        let now = Date.now
+        let predicate = #Predicate<EarnedAccessSession> { session in
+            session.isActive && session.expirationDate <= now
+        }
+        let descriptor = FetchDescriptor(predicate: predicate)
+        guard let expiredSessions = try? context.fetch(descriptor), !expiredSessions.isEmpty else { return }
+
+        for session in expiredSessions {
+            session.isActive = false
+        }
+
+        try? context.save()
     }
 
     @MainActor

@@ -3,6 +3,7 @@ import SwiftUI
 
 struct PushUpChallengeView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppEnvironment.self) private var environment
     @Environment(\.modelContext) private var modelContext
     @Query private var preferences: [UserPreferences]
     @State private var viewModel: PushUpChallengeViewModel
@@ -98,6 +99,11 @@ struct PushUpChallengeView: View {
 
         do {
             let outcome = try RewardService.grantReward(for: challenge, preferences: prefs, context: modelContext)
+            let activeSession = RewardService.currentActiveSession(context: modelContext)
+            ScreenTimeSetupService.syncRestrictions(
+                dashboard: environment.dashboard,
+                accessExpirationDate: activeSession?.expirationDate
+            )
             rewardMessage = outcome.explanation
         } catch {
             rewardMessage = error.localizedDescription

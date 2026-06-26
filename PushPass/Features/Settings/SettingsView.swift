@@ -1,10 +1,22 @@
 import SwiftData
 import SwiftUI
 
+#if canImport(FamilyControls)
+import FamilyControls
+#endif
+
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(AppEnvironment.self) private var environment
     @Environment(\.modelContext) private var modelContext
     @Query private var preferences: [UserPreferences]
+    @Query(sort: \EarnedAccessSession.expirationDate, order: .reverse) private var sessions: [EarnedAccessSession]
+    @State private var permissionErrorMessage: String?
+
+    #if canImport(FamilyControls)
+    @State private var restrictedSelection = ScreenTimeSetupService.storedSelection
+    @State private var isShowingActivityPicker = false
+    #endif
 
     private var prefs: UserPreferences {
         if let existing = preferences.first {
@@ -21,13 +33,27 @@ struct SettingsView: View {
                 PreferencesEditor(preferences: prefs)
 
                 Section {
-                    LabeledContent("Authorization", value: "Not requested")
-                    LabeledContent("Restricted apps", value: "None")
+                    LabeledContent("Authorization", value: environment.dashboard.isScreenTimeAuthorized ? "Granted" : "Needed")
+                    LabeledContent("Restricted apps", value: environment.dashboard.hasRestrictedSelection ? "Selected" : "None")
                     LabeledContent("Base allowance", value: "\(prefs.baseDailyMinutes) min")
+
+                    Button {
+                        Task {
+                            permissionErrorMessage = await ScreenTimeSetupService.requestAuthorizationIfNeeded(for: environment.dashboard)
+
+                            #if canImport(FamilyControls)
+                            if environment.dashboard.isScreenTimeAuthorized {
+                                isShowingActivityPicker = true
+                            }
+                            #endif
+                        }
+                    } label: {
+                        Label("Set Up Time Control", systemImage: "hourglass.badge.shield.checkmark")
+                    }
                 } header: {
                     Text("Screen Time")
                 } footer: {
-                    Text("Family Controls, app selection, shields, App Group storage, and DeviceActivity extensions still require Xcode capability setup and real-device testing.")
+                    Text("Family Controls authorization and app selection require the Family Controls capability and real-device testing.")
                 }
 
                 Section("Camera") {
@@ -39,6 +65,36 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .task {
+                syncRestrictions()
+            }
+            #if canImport(FamilyControls)
+            .sheet(isPresented: $isShowingActivityPicker) {
+                NavigationStack {
+                    FamilyActivityPicker(selection: $restrictedSelection)
+                        .navigationTitle("Choose Apps")
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Done") {
+                                    isShowingActivityPicker = false
+                                }
+                            }
+                        }
+                }
+            }
+            .onChange(of: restrictedSelection) { _, newSelection in
+                ScreenTimeSetupService.store(selection: newSelection, dashboard: environment.dashboard)
+                syncRestrictions()
+            }
+            #endif
+            .alert("Screen Time Setup Needed", isPresented: Binding(
+                get: { permissionErrorMessage != nil },
+                set: { if !$0 { permissionErrorMessage = nil } }
+            )) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(permissionErrorMessage ?? "Open Settings to finish Screen Time setup.")
+            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Done") {
@@ -49,6 +105,18 @@ struct SettingsView: View {
             }
         }
     }
+
+    private var activeAccessExpirationDate: Date? {
+        sessions.first { $0.isActive && $0.expirationDate > .now }?.expirationDate
+    }
+
+    private func syncRestrictions() {
+        RewardService.expireFinishedSessions(context: modelContext)
+        ScreenTimeSetupService.syncRestrictions(
+            dashboard: environment.dashboard,
+            accessExpirationDate: activeAccessExpirationDate
+        )
+    }
 }
 
 private struct PreferencesEditor: View {
@@ -57,7 +125,7 @@ private struct PreferencesEditor: View {
     var body: some View {
         Section("Earn Time") {
             Stepper("Push-ups per challenge: \(preferences.pushUpsPerChallenge)", value: $preferences.pushUpsPerChallenge, in: 1...100)
-            Stepper("Minutes per challenge: \(preferences.minutesPerChallenge)", value: $preferences.minutesPerChallenge, in: 1...60)
+            LabeledContent("Reward", value: "1 min per push-up")
             Stepper("Daily earned limit: \(preferences.maximumEarnedMinutesPerDay) min", value: $preferences.maximumEarnedMinutesPerDay, in: 5...240, step: 5)
         }
 
@@ -75,5 +143,6 @@ private struct PreferencesEditor: View {
 
 #Preview {
     SettingsView()
-        .modelContainer(for: [UserPreferences.self], inMemory: true)
+        .environment(AppEnvironment())
+        .modelContainer(for: [UserPreferences.self, EarnedAccessSession.self], inMemory: true)
 }

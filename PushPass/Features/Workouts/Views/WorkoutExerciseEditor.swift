@@ -9,14 +9,19 @@ struct WorkoutExerciseEditor: View {
         workoutExercise.sets.sorted { $0.setNumber < $1.setNumber }
     }
 
+    private var completedSetCount: Int {
+        workoutExercise.sets.filter(\.isCompleted).count
+    }
+
     var body: some View {
         Section {
             VStack(alignment: .leading, spacing: 8) {
                 Text(workoutExercise.exerciseNameSnapshot)
                     .font(.headline)
 
-                TextField("Exercise notes", text: $workoutExercise.notes, axis: .vertical)
-                    .textFieldStyle(.roundedBorder)
+                Text("\(completedSetCount) of \(workoutExercise.sets.count) sets done")
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(.secondary)
             }
 
             ForEach(orderedSets) { set in
@@ -29,6 +34,9 @@ struct WorkoutExerciseEditor: View {
             } label: {
                 Label("Add Set", systemImage: "plus.circle")
             }
+
+            TextField("Exercise notes", text: $workoutExercise.notes, axis: .vertical)
+                .textFieldStyle(.roundedBorder)
         }
     }
 
@@ -57,18 +65,30 @@ private struct LiftSetEditor: View {
     @Bindable var set: LiftSet
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(alignment: .center, spacing: 10) {
             Text("\(set.setNumber)")
                 .font(.headline)
                 .frame(width: 28, height: 28)
                 .background(.thinMaterial)
                 .clipShape(RoundedRectangle(cornerRadius: PushPassTheme.cornerRadius))
 
-            TextField("Weight", value: $set.weight, format: .number.precision(.fractionLength(0...2)))
-                .textFieldStyle(.roundedBorder)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Weight")
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                TextField("0", value: $set.weight, format: .number.precision(.fractionLength(0...2)))
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.decimalPad)
+            }
 
-            TextField("Reps", value: $set.repetitions, format: .number)
-                .textFieldStyle(.roundedBorder)
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Reps")
+                    .font(.caption2.weight(.semibold))
+                    .foregroundStyle(.secondary)
+                TextField("0", value: $set.repetitions, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.numberPad)
+            }
 
             Button {
                 set.isCompleted.toggle()

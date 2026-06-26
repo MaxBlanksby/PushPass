@@ -21,15 +21,20 @@ struct EarnView: View {
         sessions.first { $0.isActive && $0.expirationDate > .now }
     }
 
+    private var activeSessionMinutesRemaining: Int {
+        guard let activeSession else { return environment.dashboard.earnedMinutesAvailable }
+        return Int(ceil(max(0, activeSession.expirationDate.timeIntervalSinceNow) / 60.0))
+    }
+
     var body: some View {
         NavigationStack {
             List {
                 Section("Current Reward Status") {
-                    LabeledContent("Earned minutes available", value: "\(activeSession?.minutesGranted ?? environment.dashboard.earnedMinutesAvailable) min")
+                    LabeledContent("Earned minutes available", value: "\(activeSessionMinutesRemaining) min")
                     LabeledContent("Earned today", value: "\(todayRecord?.minutesEarned ?? 0) min")
                     LabeledContent("Daily limit", value: "\(prefs.maximumEarnedMinutesPerDay) min")
                     LabeledContent("Next challenge", value: "\(prefs.pushUpsPerChallenge) push-ups")
-                    LabeledContent("Reward", value: "\(prefs.minutesPerChallenge) min")
+                    LabeledContent("Reward", value: "1 min per push-up")
                     if let activeSession {
                         LabeledContent("Access expires", value: activeSession.expirationDate.formatted(date: .omitted, time: .shortened))
                     }

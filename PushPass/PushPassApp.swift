@@ -20,6 +20,8 @@ struct PushPassApp: App {
         .modelContainer(for: [
             UserPreferences.self,
             Exercise.self,
+            WorkoutTemplate.self,
+            WorkoutTemplateExercise.self,
             Workout.self,
             WorkoutExercise.self,
             LiftSet.self,

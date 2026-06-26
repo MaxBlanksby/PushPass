@@ -9,6 +9,7 @@ struct ExercisePickerView: View {
     @State private var customName = ""
     @State private var selectedMuscleGroup: MuscleGroup = .other
     @State private var selectedEquipment: Equipment = .other
+    @State private var exercisePendingDeletion: Exercise?
 
     let onSelect: (Exercise) -> Void
 
@@ -23,14 +24,29 @@ struct ExercisePickerView: View {
             List {
                 Section("Library") {
                     ForEach(filteredExercises) { exercise in
-                        Button {
-                            onSelect(exercise)
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text(exercise.name)
-                                Text("\(exercise.muscleGroup.rawValue) · \(exercise.equipment.rawValue)")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
+                        HStack {
+                            Button {
+                                onSelect(exercise)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text(exercise.name)
+                                    Text("\(exercise.muscleGroup.rawValue) · \(exercise.equipment.rawValue)")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .buttonStyle(.plain)
+
+                            if exercise.isCustom {
+                                Button {
+                                    exercisePendingDeletion = exercise
+                                } label: {
+                                    Image(systemName: "trash.fill")
+                                        .foregroundStyle(.red)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel("Delete \(exercise.name)")
                             }
                         }
                     }
@@ -65,6 +81,27 @@ struct ExercisePickerView: View {
                     }
                 }
             }
+            .confirmationDialog(
+                "Delete custom exercise?",
+                isPresented: Binding(
+                    get: { exercisePendingDeletion != nil },
+                    set: { if !$0 { exercisePendingDeletion = nil } }
+                ),
+                titleVisibility: .visible
+            ) {
+                if let exercise = exercisePendingDeletion {
+                    Button("Delete \(exercise.name)", role: .destructive) {
+                        deleteCustomExercise(exercise)
+                        exercisePendingDeletion = nil
+                    }
+                }
+
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                if let exercise = exercisePendingDeletion {
+                    Text("This removes \(exercise.name) from your exercise library.")
+                }
+            }
         }
     }
 
@@ -81,5 +118,12 @@ struct ExercisePickerView: View {
         modelContext.insert(exercise)
         try? modelContext.save()
         onSelect(exercise)
+    }
+
+    private func deleteCustomExercise(_ exercise: Exercise) {
+        guard exercise.isCustom else { return }
+
+        modelContext.delete(exercise)
+        try? modelContext.save()
     }
 }
