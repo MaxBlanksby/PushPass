@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct PushPassApp: App {
@@ -16,5 +17,15 @@ struct PushPassApp: App {
             RootView()
                 .environment(environment)
         }
+        .modelContainer(for: [
+            UserPreferences.self,
+            Exercise.self,
+            Workout.self,
+            WorkoutExercise.self,
+            LiftSet.self,
+            PushUpChallenge.self,
+            DailyRewardRecord.self,
+            EarnedAccessSession.self
+        ])
     }
 }

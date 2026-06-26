@@ -1,34 +1,72 @@
+import SwiftData
 import SwiftUI
 
 struct EarnView: View {
     @Environment(AppEnvironment.self) private var environment
+    @Query private var preferences: [UserPreferences]
+    @Query(sort: \PushUpChallenge.startedAt, order: .reverse) private var challenges: [PushUpChallenge]
+    @Query(sort: \DailyRewardRecord.date, order: .reverse) private var rewardRecords: [DailyRewardRecord]
+    @Query(sort: \EarnedAccessSession.expirationDate, order: .reverse) private var sessions: [EarnedAccessSession]
+    @State private var isShowingChallenge = false
+
+    private var prefs: UserPreferences {
+        preferences.first ?? UserPreferences()
+    }
+
+    private var todayRecord: DailyRewardRecord? {
+        rewardRecords.first { Calendar.current.isDateInToday($0.date) }
+    }
+
+    private var activeSession: EarnedAccessSession? {
+        sessions.first { $0.isActive && $0.expirationDate > .now }
+    }
 
     var body: some View {
         NavigationStack {
             List {
                 Section("Current Reward Status") {
-                    LabeledContent("Earned minutes available", value: "\(environment.dashboard.earnedMinutesAvailable) min")
-                    LabeledContent("Earned today", value: "0 min")
-                    LabeledContent("Daily limit", value: "\(AppConstants.Rewards.defaultMaximumEarnedMinutesPerDay) min")
-                    LabeledContent("Next challenge", value: "\(AppConstants.Rewards.defaultPushUpsPerChallenge) push-ups")
-                    LabeledContent("Reward", value: "\(AppConstants.Rewards.defaultMinutesPerChallenge) min")
+                    LabeledContent("Earned minutes available", value: "\(activeSession?.minutesGranted ?? environment.dashboard.earnedMinutesAvailable) min")
+                    LabeledContent("Earned today", value: "\(todayRecord?.minutesEarned ?? 0) min")
+                    LabeledContent("Daily limit", value: "\(prefs.maximumEarnedMinutesPerDay) min")
+                    LabeledContent("Next challenge", value: "\(prefs.pushUpsPerChallenge) push-ups")
+                    LabeledContent("Reward", value: "\(prefs.minutesPerChallenge) min")
+                    if let activeSession {
+                        LabeledContent("Access expires", value: activeSession.expirationDate.formatted(date: .omitted, time: .shortened))
+                    }
                 }
 
                 Section {
                     Button {
+                        isShowingChallenge = true
                     } label: {
                         Label("Begin Challenge", systemImage: "camera.fill")
                     }
-                    .disabled(true)
                 } footer: {
-                    Text("Camera-based verification is scheduled for the AVFoundation and Vision phases. This button is disabled until that service exists.")
+                    Text("Camera frames are processed on device and are not saved. In debug builds, Simulate Rep is available for simulator testing.")
                 }
 
                 Section("Previous Challenges") {
-                    ContentUnavailableView("No Challenges Yet", systemImage: "figure.strengthtraining.traditional")
+                    if challenges.isEmpty {
+                        ContentUnavailableView("No Challenges Yet", systemImage: "figure.strengthtraining.traditional")
+                    } else {
+                        ForEach(challenges) { challenge in
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(challenge.wasSuccessful ? "Completed Challenge" : "Challenge Attempt")
+                                    .font(.headline)
+                                Text("\(challenge.completedRepetitions) / \(challenge.targetRepetitions) push-ups · \(challenge.minutesAwarded) min")
+                                    .foregroundStyle(.secondary)
+                                Text(challenge.startedAt, format: .dateTime.month().day().hour().minute())
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
                 }
             }
             .navigationTitle("Earn")
+            .navigationDestination(isPresented: $isShowingChallenge) {
+                PushUpChallengeView(targetRepetitions: prefs.pushUpsPerChallenge)
+            }
         }
     }
 }
@@ -36,4 +74,5 @@ struct EarnView: View {
 #Preview {
     EarnView()
         .environment(AppEnvironment())
+        .modelContainer(for: [UserPreferences.self, PushUpChallenge.self, DailyRewardRecord.self, EarnedAccessSession.self], inMemory: true)
 }

@@ -1,6 +1,9 @@
 import SwiftUI
+import SwiftData
 
 struct RootView: View {
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
         TabView {
             TodayView()
@@ -22,6 +25,9 @@ struct RootView: View {
                 .tabItem {
                     Label("Progress", systemImage: "chart.xyaxis.line")
                 }
+        }
+        .task {
+            ExerciseLibrary.seedIfNeeded(in: modelContext)
         }
     }
 }

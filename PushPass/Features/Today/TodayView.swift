@@ -1,11 +1,38 @@
+import SwiftData
 import SwiftUI
 
 struct TodayView: View {
     @Environment(AppEnvironment.self) private var environment
+    @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
+    @Query(sort: \DailyRewardRecord.date, order: .reverse) private var rewardRecords: [DailyRewardRecord]
+    @Query(sort: \EarnedAccessSession.expirationDate, order: .reverse) private var sessions: [EarnedAccessSession]
     @State private var isShowingSettings = false
 
     private var currentDateText: String {
         Date.now.formatted(.dateTime.weekday(.wide).month(.wide).day().year())
+    }
+
+    private var todayRecord: DailyRewardRecord? {
+        rewardRecords.first { Calendar.current.isDateInToday($0.date) }
+    }
+
+    private var activeSession: EarnedAccessSession? {
+        sessions.first { $0.isActive && $0.expirationDate > .now }
+    }
+
+    private var workoutsThisWeek: Int {
+        let interval = Calendar.current.dateInterval(of: .weekOfYear, for: .now)
+        return workouts.filter { workout in
+            guard workout.isCompleted, let interval else { return false }
+            return interval.contains(workout.startDate)
+        }.count
+    }
+
+    private var recentWorkoutSummary: String {
+        guard let workout = workouts.first(where: \.isCompleted) else {
+            return "No workouts logged yet"
+        }
+        return "\(workout.name) · \(workout.exercises.count) exercises"
     }
 
     var body: some View {
@@ -51,10 +78,8 @@ struct TodayView: View {
     }
 
     private var statusSection: some View {
-        let dashboard = environment.dashboard
-
         return VStack(alignment: .leading, spacing: PushPassTheme.cardSpacing) {
-            Text(dashboard.restrictionStatus.rawValue)
+            Text(activeSession == nil ? environment.dashboard.restrictionStatus.rawValue : RestrictionStatus.earnedSessionActive.rawValue)
                 .font(.title3.weight(.semibold))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
@@ -62,13 +87,13 @@ struct TodayView: View {
                 .clipShape(RoundedRectangle(cornerRadius: PushPassTheme.cornerRadius))
 
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: PushPassTheme.cardSpacing) {
-                MetricTile(title: "Remaining app time", value: "\(dashboard.remainingBaseMinutes) min", systemImage: "timer")
-                MetricTile(title: "Earned time", value: "\(dashboard.earnedMinutesAvailable) min", systemImage: "bolt")
-                MetricTile(title: "Push-ups today", value: "\(dashboard.pushUpsCompletedToday)", systemImage: "figure.core.training")
-                MetricTile(title: "Workouts this week", value: "\(dashboard.workoutsCompletedThisWeek)", systemImage: "calendar")
+                MetricTile(title: "Remaining app time", value: "\(environment.dashboard.remainingBaseMinutes) min", systemImage: "timer")
+                MetricTile(title: "Earned time", value: "\(activeSession?.minutesGranted ?? 0) min", systemImage: "bolt")
+                MetricTile(title: "Push-ups today", value: "\(todayRecord?.pushUpsCompleted ?? 0)", systemImage: "figure.core.training")
+                MetricTile(title: "Workouts this week", value: "\(workoutsThisWeek)", systemImage: "calendar")
             }
 
-            Text("Goal: \(dashboard.dailyExerciseGoal)")
+            Text("Goal: \(environment.dashboard.dailyExerciseGoal)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -123,7 +148,7 @@ struct TodayView: View {
             Text("Most Recent Workout")
                 .font(.headline)
 
-            Text(environment.dashboard.recentWorkoutSummary)
+            Text(recentWorkoutSummary)
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
