@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct PushPassApp: App {
+    @State private var environment = AppEnvironment()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
+                .environment(environment)
         }
     }
 }
