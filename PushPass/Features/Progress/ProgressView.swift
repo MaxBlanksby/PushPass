@@ -4,7 +4,6 @@ import Charts
 
 struct ProgressView: View {
     @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
-    @Query(sort: \DailyRewardRecord.date, order: .reverse) private var rewardRecords: [DailyRewardRecord]
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @State private var selectedExercise: Exercise?
     @State private var searchText = ""
@@ -59,22 +58,12 @@ struct ProgressView: View {
         return recentsByKey.values.sorted { $0.lastPerformedAt > $1.lastPerformedAt }
     }
 
-    private var totalPushUps: Int {
-        rewardRecords.map(\.pushUpsCompleted).reduce(0, +)
-    }
-
-    private var totalMinutesEarned: Int {
-        rewardRecords.map(\.minutesEarned).reduce(0, +)
-    }
-
     var body: some View {
         NavigationStack {
             List {
                 Section("Summary") {
                     LabeledContent("Total workouts", value: "\(completedWorkouts.count)")
                     LabeledContent("Current streak", value: "\(currentWorkoutStreak) days")
-                    LabeledContent("Total push-ups", value: "\(totalPushUps)")
-                    LabeledContent("Total minutes earned", value: "\(totalMinutesEarned)")
                 }
 
                 Section("Recent Exercises") {
@@ -95,6 +84,12 @@ struct ProgressView: View {
                     }
                 }
 
+                Section {
+                    TextField("Search exercises", text: $searchText)
+                } header: {
+                    Text("Search Exercises")
+                }
+
                 Section("List of All Exercises") {
                     if exercises.filter({ !$0.isArchived }).isEmpty {
                         ContentUnavailableView("No Exercise Data", systemImage: "chart.xyaxis.line")
@@ -111,7 +106,6 @@ struct ProgressView: View {
                     }
                 }
             }
-            .searchable(text: $searchText, prompt: "Search exercises")
             .navigationTitle("Progress")
         }
     }

@@ -9,9 +9,14 @@ struct WorkoutsView: View {
     @State private var activeWorkout: Workout?
     @State private var isBuildingCustomWorkout = false
     @State private var templateBeingEdited: WorkoutTemplate?
+    @State private var isShowingWorkoutHistory = false
 
     private var completedWorkouts: [Workout] {
         workouts.filter(\.isCompleted)
+    }
+
+    private var recentCompletedWorkouts: [Workout] {
+        Array(completedWorkouts.prefix(3))
     }
 
     var body: some View {
@@ -75,7 +80,7 @@ struct WorkoutsView: View {
                     if completedWorkouts.isEmpty {
                         ContentUnavailableView("No Workouts Yet", systemImage: "dumbbell")
                     } else {
-                        ForEach(completedWorkouts) { workout in
+                        ForEach(recentCompletedWorkouts) { workout in
                             NavigationLink {
                                 WorkoutDetailView(workout: workout)
                             } label: {
@@ -83,10 +88,21 @@ struct WorkoutsView: View {
                             }
                         }
                         .onDelete(perform: deleteWorkouts)
+
+                        if completedWorkouts.count > recentCompletedWorkouts.count {
+                            Button {
+                                isShowingWorkoutHistory = true
+                            } label: {
+                                Label("Show History", systemImage: "clock.arrow.circlepath")
+                            }
+                        }
                     }
                 }
             }
             .navigationTitle("Workouts")
+            .navigationDestination(isPresented: $isShowingWorkoutHistory) {
+                WorkoutHistoryView(workouts: completedWorkouts)
+            }
             .sheet(item: $activeWorkout) { workout in
                 WorkoutSessionView(workout: workout)
             }
@@ -151,9 +167,26 @@ struct WorkoutsView: View {
 
     private func deleteWorkouts(at offsets: IndexSet) {
         for offset in offsets {
-            modelContext.delete(completedWorkouts[offset])
+            modelContext.delete(recentCompletedWorkouts[offset])
         }
         try? modelContext.save()
+    }
+}
+
+private struct WorkoutHistoryView: View {
+    let workouts: [Workout]
+
+    var body: some View {
+        List {
+            ForEach(workouts) { workout in
+                NavigationLink {
+                    WorkoutDetailView(workout: workout)
+                } label: {
+                    WorkoutRow(workout: workout)
+                }
+            }
+        }
+        .navigationTitle("Workout History")
     }
 }
 

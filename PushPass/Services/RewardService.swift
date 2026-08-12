@@ -9,16 +9,13 @@ struct RewardOutcome {
 enum RewardError: LocalizedError {
     case failedChallenge
     case duplicateReward
-    case dailyLimitReached
 
     var errorDescription: String? {
         switch self {
         case .failedChallenge:
-            "Only successful challenges can award time."
+            "Only successful push-up logs can award time."
         case .duplicateReward:
-            "This challenge has already been rewarded."
-        case .dailyLimitReached:
-            "You have reached today’s earning limit."
+            "These push-ups have already been rewarded."
         }
     }
 }
@@ -27,7 +24,6 @@ enum RewardService {
     @MainActor
     static func grantReward(
         for challenge: PushUpChallenge,
-        preferences: UserPreferences,
         context: ModelContext,
         calendar: Calendar = .current
     ) throws -> RewardOutcome {
@@ -35,12 +31,7 @@ enum RewardService {
         guard !challenge.wasRewarded else { throw RewardError.duplicateReward }
 
         let record = dailyRecord(for: .now, context: context, calendar: calendar)
-        let remainingCapacity = max(0, preferences.maximumEarnedMinutesPerDay - record.minutesEarned)
-        guard remainingCapacity > 0 else { throw RewardError.dailyLimitReached }
-
-        let earnedMinutes = max(0, challenge.completedRepetitions)
-        let grantedMinutes = min(earnedMinutes, remainingCapacity)
-        guard grantedMinutes > 0 else { throw RewardError.dailyLimitReached }
+        let grantedMinutes = max(0, challenge.completedRepetitions)
 
         challenge.wasRewarded = true
         challenge.minutesAwarded = grantedMinutes
@@ -68,14 +59,10 @@ enum RewardService {
 
         try context.save()
 
-        let explanation: String
-        if grantedMinutes < earnedMinutes {
-            explanation = "Daily limit nearly reached. Awarded \(grantedMinutes) minutes instead of \(earnedMinutes)."
-        } else {
-            explanation = "Challenge complete. Awarded \(grantedMinutes) minutes, one per push-up."
-        }
-
-        return RewardOutcome(grantedMinutes: grantedMinutes, explanation: explanation)
+        return RewardOutcome(
+            grantedMinutes: grantedMinutes,
+            explanation: "Logged \(challenge.completedRepetitions) push-ups. Awarded \(grantedMinutes) minutes."
+        )
     }
 
     @MainActor

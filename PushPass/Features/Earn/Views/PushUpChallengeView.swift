@@ -5,13 +5,8 @@ struct PushUpChallengeView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.modelContext) private var modelContext
-    @Query private var preferences: [UserPreferences]
-    @State private var viewModel: PushUpChallengeViewModel
+    @State private var viewModel = PushUpChallengeViewModel()
     @State private var rewardMessage: String?
-
-    init(targetRepetitions: Int) {
-        _viewModel = State(initialValue: PushUpChallengeViewModel(targetRepetitions: targetRepetitions))
-    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -39,10 +34,13 @@ struct PushUpChallengeView: View {
             }
 
             VStack(spacing: 8) {
-                Text("\(viewModel.repetitionCount) / \(viewModel.targetRepetitions)")
+                Text("\(viewModel.repetitionCount)")
                     .font(.system(size: 56, weight: .bold, design: .rounded))
                     .monospacedDigit()
                 Text("verified push-ups")
+                    .foregroundStyle(.secondary)
+                Text("\(viewModel.repetitionCount) minutes ready to log")
+                    .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
                 Text(elbowAngleText)
                     .font(.caption.monospacedDigit())
@@ -58,23 +56,28 @@ struct PushUpChallengeView: View {
                     .foregroundStyle(.green)
             }
 
-            Button(viewModel.isComplete ? "Done" : "Cancel") {
-                dismiss()
+            HStack {
+                Button(rewardMessage == nil ? "Cancel" : "Done") {
+                    dismiss()
+                }
+                .buttonStyle(.bordered)
+
+                Button {
+                    logPushUps(detectionMode: "camera")
+                } label: {
+                    Label("Log", systemImage: "checkmark.circle.fill")
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(viewModel.repetitionCount <= 0 || rewardMessage != nil)
             }
-            .buttonStyle(.borderedProminent)
         }
         .padding(PushPassTheme.screenPadding)
-        .navigationTitle("Push-up Challenge")
+        .navigationTitle("Earn Minutes")
         .onAppear {
             viewModel.start()
         }
         .onDisappear {
             viewModel.stop()
-        }
-        .onChange(of: viewModel.isComplete) { _, isComplete in
-            if isComplete {
-                completeChallenge(detectionMode: "camera")
-            }
         }
     }
 
@@ -98,17 +101,15 @@ struct PushUpChallengeView: View {
         return "Distance signal: \(formattedRatio), \(mode)"
     }
 
-    private func completeChallenge(detectionMode: String) {
+    private func logPushUps(detectionMode: String) {
         guard rewardMessage == nil else { return }
-
-        let prefs = preferences.first ?? UserPreferences()
-        if preferences.isEmpty {
-            modelContext.insert(prefs)
-        }
+        guard viewModel.repetitionCount > 0 else { return }
+        viewModel.isLoggingComplete = true
+        viewModel.stop()
 
         let challenge = PushUpChallenge(
             completedAt: .now,
-            targetRepetitions: viewModel.targetRepetitions,
+            targetRepetitions: viewModel.repetitionCount,
             completedRepetitions: viewModel.repetitionCount,
             wasSuccessful: true,
             detectionMode: detectionMode
@@ -116,7 +117,7 @@ struct PushUpChallengeView: View {
         modelContext.insert(challenge)
 
         do {
-            let outcome = try RewardService.grantReward(for: challenge, preferences: prefs, context: modelContext)
+            let outcome = try RewardService.grantReward(for: challenge, context: modelContext)
             let activeSession = RewardService.currentActiveSession(context: modelContext)
             ScreenTimeSetupService.syncRestrictions(
                 dashboard: environment.dashboard,

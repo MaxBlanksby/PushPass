@@ -124,9 +124,7 @@ private struct PreferencesEditor: View {
 
     var body: some View {
         Section("Earn Time") {
-            Stepper("Push-ups per challenge: \(preferences.pushUpsPerChallenge)", value: $preferences.pushUpsPerChallenge, in: 1...100)
             LabeledContent("Reward", value: "1 min per push-up")
-            Stepper("Daily earned limit: \(preferences.maximumEarnedMinutesPerDay) min", value: $preferences.maximumEarnedMinutesPerDay, in: 5...240, step: 5)
         }
 
         Section("Workout") {
