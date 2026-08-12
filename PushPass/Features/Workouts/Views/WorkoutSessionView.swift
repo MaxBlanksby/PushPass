@@ -37,7 +37,7 @@ struct WorkoutSessionView: View {
                 ForEach(orderedExercises) { workoutExercise in
                     WorkoutExerciseEditor(
                         workoutExercise: workoutExercise,
-                        lastReportedSet: lastReportedSet(for: workoutExercise)
+                        topReportedSet: topReportedSet(for: workoutExercise)
                     )
                 }
                 .onDelete(perform: deleteExercises)
@@ -96,7 +96,7 @@ struct WorkoutSessionView: View {
         try? modelContext.save()
     }
 
-    private func lastReportedSet(for workoutExercise: WorkoutExercise) -> LastReportedLiftSet? {
+    private func topReportedSet(for workoutExercise: WorkoutExercise) -> ReportedLiftSet? {
         let matchingCompletedSets = workouts
             .filter { $0.id != workout.id && $0.isCompleted }
             .flatMap { historicalWorkout in
@@ -107,9 +107,9 @@ struct WorkoutSessionView: View {
                     .flatMap { historicalExercise in
                         historicalExercise.sets
                             .filter(\.isCompleted)
-                            .compactMap { set -> LastReportedLiftSet? in
+                            .compactMap { set -> ReportedLiftSet? in
                                 guard let completedAt = set.completedAt ?? historicalWorkout.endDate else { return nil }
-                                return LastReportedLiftSet(
+                                return ReportedLiftSet(
                                     weight: set.weight,
                                     repetitions: set.repetitions,
                                     completedAt: completedAt
@@ -118,7 +118,21 @@ struct WorkoutSessionView: View {
                     }
             }
 
-        return matchingCompletedSets.max { $0.completedAt < $1.completedAt }
+        return matchingCompletedSets.max { lhs, rhs in
+            if lhs.estimatedOneRepMax != rhs.estimatedOneRepMax {
+                return lhs.estimatedOneRepMax < rhs.estimatedOneRepMax
+            }
+
+            if lhs.weight != rhs.weight {
+                return lhs.weight < rhs.weight
+            }
+
+            if lhs.repetitions != rhs.repetitions {
+                return lhs.repetitions < rhs.repetitions
+            }
+
+            return lhs.completedAt < rhs.completedAt
+        }
     }
 
     private func exercisesMatch(_ lhs: WorkoutExercise, _ rhs: WorkoutExercise) -> Bool {

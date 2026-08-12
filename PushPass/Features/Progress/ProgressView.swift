@@ -95,7 +95,7 @@ struct ProgressView: View {
                     }
                 }
 
-                Section("Exercise History") {
+                Section("List of All Exercises") {
                     if exercises.filter({ !$0.isArchived }).isEmpty {
                         ContentUnavailableView("No Exercise Data", systemImage: "chart.xyaxis.line")
                     } else if visibleExercises.isEmpty {
@@ -162,35 +162,54 @@ private struct RecentExerciseRow: View {
 }
 
 private struct ExerciseProgressView: View {
+    @Environment(\.modelContext) private var modelContext
     let exercise: Exercise
     let workouts: [Workout]
+    @State private var selectedChartMode = ExerciseChartMode.volume
+    @State private var isShowingSetHistory = false
+    @State private var setBeingEdited: LiftSet?
+    @State private var setPendingDeletion: LiftSet?
 
-    private var sets: [LiftSet] {
+    private var completedSets: [CompletedExerciseSet] {
         workouts.flatMap { workout in
             workout.exercises.filter { $0.exercise?.id == exercise.id || $0.exerciseNameSnapshot == exercise.name }
                 .flatMap(\.sets)
                 .filter(\.isCompleted)
+                .map { set in
+                    CompletedExerciseSet(
+                        liftSet: set,
+                        completedAt: set.completedAt ?? workout.endDate ?? workout.startDate
+                    )
+                }
         }
+        .sorted { $0.completedAt > $1.completedAt }
     }
 
     private var bestWeight: Double {
-        sets.map(\.weight).max() ?? 0
+        completedSets.map(\.liftSet.weight).max() ?? 0
     }
 
     private var bestReps: Int {
-        sets.map(\.repetitions).max() ?? 0
+        completedSets.map(\.liftSet.repetitions).max() ?? 0
     }
 
     private var estimatedOneRepMax: Double {
-        sets.map { $0.weight * (1 + Double($0.repetitions) / 30) }.max() ?? 0
+        completedSets.map { estimatedOneRepMaxValue(for: $0.liftSet) }.max() ?? 0
     }
 
     private var chartPoints: [ExerciseChartPoint] {
-        sets.compactMap { set in
-            guard let completedAt = set.completedAt else { return nil }
-            return ExerciseChartPoint(date: completedAt, weight: set.weight, repetitions: set.repetitions)
+        completedSets.map { completedSet in
+            ExerciseChartPoint(
+                date: completedSet.completedAt,
+                weight: completedSet.liftSet.weight,
+                repetitions: completedSet.liftSet.repetitions
+            )
         }
         .sorted { $0.date < $1.date }
+    }
+
+    private var recentCompletedSets: [CompletedExerciseSet] {
+        Array(completedSets.prefix(3))
     }
 
     var body: some View {
@@ -202,15 +221,22 @@ private struct ExerciseProgressView: View {
             }
 
             if !chartPoints.isEmpty {
-                Section("Volume Trend") {
+                Section {
+                    Picker("Trend", selection: $selectedChartMode) {
+                        ForEach(ExerciseChartMode.allCases) { mode in
+                            Text(mode.rawValue).tag(mode)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+
                     Chart(chartPoints) { point in
                         LineMark(
                             x: .value("Date", point.date),
-                            y: .value("Volume", point.volume)
+                            y: .value(selectedChartMode.axisLabel, selectedChartMode.value(for: point))
                         )
                         PointMark(
                             x: .value("Date", point.date),
-                            y: .value("Volume", point.volume)
+                            y: .value(selectedChartMode.axisLabel, selectedChartMode.value(for: point))
                         )
                     }
                     .frame(height: 220)
@@ -218,16 +244,196 @@ private struct ExerciseProgressView: View {
             }
 
             Section("Completed Sets") {
-                if sets.isEmpty {
+                if completedSets.isEmpty {
                     ContentUnavailableView("No Sets Logged", systemImage: "chart.xyaxis.line")
                 } else {
-                    ForEach(Array(sets.enumerated()), id: \.offset) { _, set in
-                        LabeledContent("Set \(set.setNumber)", value: "\(set.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(set.repetitions)")
+                    ForEach(recentCompletedSets) { completedSet in
+                        CompletedSetRow(completedSet: completedSet) {
+                            setBeingEdited = completedSet.liftSet
+                        } onDelete: {
+                            setPendingDeletion = completedSet.liftSet
+                        }
+                    }
+
+                    if completedSets.count > recentCompletedSets.count {
+                        Button {
+                            isShowingSetHistory = true
+                        } label: {
+                            Label("Show History", systemImage: "clock.arrow.circlepath")
+                        }
                     }
                 }
             }
         }
         .navigationTitle(exercise.name)
+        .sheet(isPresented: $isShowingSetHistory) {
+            NavigationStack {
+                List {
+                    ForEach(completedSets) { completedSet in
+                        CompletedSetRow(completedSet: completedSet) {
+                            setBeingEdited = completedSet.liftSet
+                        } onDelete: {
+                            setPendingDeletion = completedSet.liftSet
+                        }
+                    }
+                }
+                .navigationTitle("Set History")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Done") {
+                            isShowingSetHistory = false
+                        }
+                    }
+                }
+            }
+        }
+        .sheet(item: $setBeingEdited) { set in
+            EditLiftSetView(set: set)
+        }
+        .confirmationDialog(
+            "Delete this set?",
+            isPresented: Binding(
+                get: { setPendingDeletion != nil },
+                set: { if !$0 { setPendingDeletion = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button("Delete Set", role: .destructive) {
+                if let setPendingDeletion {
+                    delete(setPendingDeletion)
+                }
+                setPendingDeletion = nil
+            }
+
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This removes the set from your progress data.")
+        }
+    }
+
+    private func delete(_ set: LiftSet) {
+        modelContext.delete(set)
+        try? modelContext.save()
+    }
+}
+
+private enum ExerciseChartMode: String, CaseIterable, Identifiable {
+    case volume = "Volume Trend"
+    case weight = "Weight Trend"
+
+    var id: Self { self }
+
+    var axisLabel: String {
+        switch self {
+        case .volume:
+            return "Volume"
+        case .weight:
+            return "Weight"
+        }
+    }
+
+    func value(for point: ExerciseChartPoint) -> Double {
+        switch self {
+        case .volume:
+            return point.volume
+        case .weight:
+            return point.weight
+        }
+    }
+}
+
+private struct CompletedExerciseSet: Identifiable {
+    let liftSet: LiftSet
+    let completedAt: Date
+
+    var id: UUID {
+        liftSet.id
+    }
+}
+
+private struct CompletedSetRow: View {
+    let completedSet: CompletedExerciseSet
+    let onEdit: () -> Void
+    let onDelete: () -> Void
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Set \(completedSet.liftSet.setNumber)")
+                    .font(.headline)
+
+                Text(completedSet.completedAt, format: .dateTime.month().day().year().hour().minute())
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+
+            Spacer()
+
+            Text("\(completedSet.liftSet.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(completedSet.liftSet.repetitions)")
+                .font(.subheadline.monospacedDigit())
+                .foregroundStyle(.secondary)
+
+            Button(action: onEdit) {
+                Image(systemName: "pencil")
+                    .imageScale(.large)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Edit set")
+
+            Button(role: .destructive, action: onDelete) {
+                Image(systemName: "trash")
+                    .imageScale(.large)
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Delete set")
+        }
+    }
+}
+
+private struct EditLiftSetView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
+    let set: LiftSet
+    @State private var weight: Double
+    @State private var repetitions: Int
+
+    init(set: LiftSet) {
+        self.set = set
+        _weight = State(initialValue: set.weight)
+        _repetitions = State(initialValue: set.repetitions)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Set") {
+                    TextField("Weight", value: $weight, format: .number.precision(.fractionLength(0...2)))
+                        .keyboardType(.decimalPad)
+                    TextField("Reps", value: $repetitions, format: .number)
+                        .keyboardType(.numberPad)
+                }
+            }
+            .navigationTitle("Edit Set")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save") {
+                        set.weight = max(0, weight)
+                        set.repetitions = max(0, repetitions)
+                        if set.completedAt == nil {
+                            set.completedAt = .now
+                        }
+                        try? modelContext.save()
+                        dismiss()
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -240,6 +446,10 @@ private struct ExerciseChartPoint: Identifiable {
     var volume: Double {
         weight * Double(repetitions)
     }
+}
+
+private func estimatedOneRepMaxValue(for set: LiftSet) -> Double {
+    set.weight * (1 + Double(set.repetitions) / 30)
 }
 
 #Preview {

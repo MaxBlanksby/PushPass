@@ -4,7 +4,7 @@ import SwiftUI
 struct WorkoutExerciseEditor: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var workoutExercise: WorkoutExercise
-    let lastReportedSet: LastReportedLiftSet?
+    let topReportedSet: ReportedLiftSet?
 
     private var orderedSets: [LiftSet] {
         workoutExercise.sets.sorted { $0.setNumber < $1.setNumber }
@@ -24,8 +24,8 @@ struct WorkoutExerciseEditor: View {
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
 
-                if let lastReportedSet {
-                    Text("Last reported: \(lastReportedSet.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(lastReportedSet.repetitions) on \(lastReportedSet.completedAt.formatted(date: .abbreviated, time: .omitted))")
+                if let topReportedSet {
+                    Text("Top set: \(topReportedSet.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(topReportedSet.repetitions) on \(topReportedSet.completedAt.formatted(date: .abbreviated, time: .omitted))")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -68,10 +68,14 @@ struct WorkoutExerciseEditor: View {
     }
 }
 
-struct LastReportedLiftSet {
+struct ReportedLiftSet {
     let weight: Double
     let repetitions: Int
     let completedAt: Date
+
+    var estimatedOneRepMax: Double {
+        weight * (1 + Double(repetitions) / 30)
+    }
 }
 
 private struct LiftSetEditor: View {
