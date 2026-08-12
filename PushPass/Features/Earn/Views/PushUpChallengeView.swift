@@ -19,7 +19,12 @@ struct PushUpChallengeView: View {
                 #if os(iOS)
                 CameraPreviewView(session: viewModel.cameraSession.session)
                     .frame(maxWidth: .infinity)
-                    .aspectRatio(3 / 4, contentMode: .fit)
+                    .aspectRatio(9 / 16, contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: PushPassTheme.cornerRadius))
+
+                BodyPoseOverlayView(pose: viewModel.currentPose)
+                    .frame(maxWidth: .infinity)
+                    .aspectRatio(9 / 16, contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: PushPassTheme.cornerRadius))
                 #else
                 CameraPreviewView()
@@ -39,6 +44,12 @@ struct PushUpChallengeView: View {
                     .monospacedDigit()
                 Text("verified push-ups")
                     .foregroundStyle(.secondary)
+                Text(elbowAngleText)
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
+                Text(distanceSignalText)
+                    .font(.caption.monospacedDigit())
+                    .foregroundStyle(.secondary)
             }
 
             if let rewardMessage {
@@ -46,19 +57,6 @@ struct PushUpChallengeView: View {
                     .font(.headline)
                     .foregroundStyle(.green)
             }
-
-            #if DEBUG
-            Button {
-                viewModel.simulateRepForDebug()
-                if viewModel.isComplete {
-                    completeChallenge(detectionMode: "debug-simulated")
-                }
-            } label: {
-                Label("Simulate Rep", systemImage: "plus.circle")
-                    .frame(maxWidth: .infinity)
-            }
-            .buttonStyle(.bordered)
-            #endif
 
             Button(viewModel.isComplete ? "Done" : "Cancel") {
                 dismiss()
@@ -78,6 +76,26 @@ struct PushUpChallengeView: View {
                 completeChallenge(detectionMode: "camera")
             }
         }
+    }
+
+    private var elbowAngleText: String {
+        guard let angle = viewModel.currentElbowAngle else {
+            return "Elbow angle: --"
+        }
+
+        let phase = angle <= 90 ? "bottom" : "top"
+        let formattedAngle = angle.formatted(.number.precision(.fractionLength(0)))
+        return "Elbow angle: \(formattedAngle) degrees, \(phase)"
+    }
+
+    private var distanceSignalText: String {
+        guard let ratio = viewModel.currentDistanceRatio else {
+            return "Distance signal: --"
+        }
+
+        let formattedRatio = ratio.formatted(.number.precision(.fractionLength(2)))
+        let mode = viewModel.isUsingDistanceFallback ? "fallback" : "support"
+        return "Distance signal: \(formattedRatio), \(mode)"
     }
 
     private func completeChallenge(detectionMode: String) {

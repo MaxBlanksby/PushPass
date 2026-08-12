@@ -7,6 +7,10 @@ final class PushUpChallengeViewModel {
     var feedback = "Place the phone so your side profile is visible"
     var isComplete = false
     var errorMessage: String?
+    var currentPose: BodyPose?
+    var currentElbowAngle: Double?
+    var currentDistanceRatio: Double?
+    var isUsingDistanceFallback = false
 
     let targetRepetitions: Int
     private var analyzer = PushUpAnalyzer()
@@ -35,6 +39,10 @@ final class PushUpChallengeViewModel {
         isComplete = false
         feedback = "Calibrating"
         errorMessage = nil
+        currentPose = nil
+        currentElbowAngle = nil
+        currentDistanceRatio = nil
+        isUsingDistanceFallback = false
 
         #if os(iOS)
         cameraSession.requestAccessAndStart()
@@ -49,17 +57,14 @@ final class PushUpChallengeViewModel {
         #endif
     }
 
-    func simulateRepForDebug() {
-        guard !isComplete else { return }
-        repetitionCount += 1
-        feedback = "Rep counted"
-        isComplete = repetitionCount >= targetRepetitions
-    }
-
     private func process(pose: BodyPose?) {
         guard !isComplete else { return }
+        currentPose = pose
         let result = analyzer.analyze(pose: pose)
         repetitionCount = result.repetitionCount
+        currentElbowAngle = result.elbowAngle
+        currentDistanceRatio = result.distanceRatio
+        isUsingDistanceFallback = result.usedDistanceFallback
         feedback = result.message
         isComplete = repetitionCount >= targetRepetitions
     }

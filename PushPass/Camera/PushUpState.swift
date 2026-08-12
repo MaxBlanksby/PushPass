@@ -14,4 +14,7 @@ struct PushUpAnalyzerResult {
     let state: PushUpState
     let repetitionCount: Int
     let message: String
+    let elbowAngle: Double?
+    let distanceRatio: Double?
+    let usedDistanceFallback: Bool
 }

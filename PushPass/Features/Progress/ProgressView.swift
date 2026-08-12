@@ -7,9 +7,56 @@ struct ProgressView: View {
     @Query(sort: \DailyRewardRecord.date, order: .reverse) private var rewardRecords: [DailyRewardRecord]
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @State private var selectedExercise: Exercise?
+    @State private var searchText = ""
 
     private var completedWorkouts: [Workout] {
         workouts.filter(\.isCompleted)
+    }
+
+    private var visibleExercises: [Exercise] {
+        exercises
+            .filter { !$0.isArchived }
+            .filter { searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    private var recentExercises: [RecentExercise] {
+        var recentsByKey: [String: RecentExercise] = [:]
+
+        for workout in completedWorkouts {
+            for workoutExercise in workout.exercises {
+                let completedSets = workoutExercise.sets.filter(\.isCompleted)
+                guard !completedSets.isEmpty else { continue }
+
+                let exerciseName = workoutExercise.exercise?.name ?? workoutExercise.exerciseNameSnapshot
+                let key = workoutExercise.exercise?.id.uuidString ?? exerciseName.lowercased()
+                let latestSet = completedSets.max {
+                    ($0.completedAt ?? workout.endDate ?? workout.startDate) < ($1.completedAt ?? workout.endDate ?? workout.startDate)
+                }
+                let lastPerformedAt = latestSet?.completedAt ?? workout.endDate ?? workout.startDate
+                let totalVolume = completedSets.reduce(0) { $0 + ($1.weight * Double($1.repetitions)) }
+
+                let recent = RecentExercise(
+                    id: key,
+                    exercise: workoutExercise.exercise,
+                    exerciseName: exerciseName,
+                    lastPerformedAt: lastPerformedAt,
+                    completedSetCount: completedSets.count,
+                    totalVolume: totalVolume,
+                    lastWeight: latestSet?.weight ?? 0,
+                    lastRepetitions: latestSet?.repetitions ?? 0
+                )
+
+                if let existing = recentsByKey[key] {
+                    if recent.lastPerformedAt > existing.lastPerformedAt {
+                        recentsByKey[key] = recent
+                    }
+                } else {
+                    recentsByKey[key] = recent
+                }
+            }
+        }
+
+        return recentsByKey.values.sorted { $0.lastPerformedAt > $1.lastPerformedAt }
     }
 
     private var totalPushUps: Int {
@@ -30,11 +77,31 @@ struct ProgressView: View {
                     LabeledContent("Total minutes earned", value: "\(totalMinutesEarned)")
                 }
 
-                Section("Exercise History") {
-                    if exercises.isEmpty {
-                        ContentUnavailableView("No Exercise Data", systemImage: "chart.xyaxis.line")
+                Section("Recent Exercises") {
+                    if recentExercises.isEmpty {
+                        ContentUnavailableView("No Recent Exercises", systemImage: "clock.arrow.circlepath")
                     } else {
-                        ForEach(exercises.filter { !$0.isArchived }) { exercise in
+                        ForEach(recentExercises) { recentExercise in
+                            if let exercise = recentExercise.exercise ?? exercises.first(where: { $0.name == recentExercise.exerciseName }) {
+                                NavigationLink {
+                                    ExerciseProgressView(exercise: exercise, workouts: completedWorkouts)
+                                } label: {
+                                    RecentExerciseRow(recentExercise: recentExercise)
+                                }
+                            } else {
+                                RecentExerciseRow(recentExercise: recentExercise)
+                            }
+                        }
+                    }
+                }
+
+                Section("Exercise History") {
+                    if exercises.filter({ !$0.isArchived }).isEmpty {
+                        ContentUnavailableView("No Exercise Data", systemImage: "chart.xyaxis.line")
+                    } else if visibleExercises.isEmpty {
+                        ContentUnavailableView.search(text: searchText)
+                    } else {
+                        ForEach(visibleExercises) { exercise in
                             NavigationLink {
                                 ExerciseProgressView(exercise: exercise, workouts: completedWorkouts)
                             } label: {
@@ -44,6 +111,7 @@ struct ProgressView: View {
                     }
                 }
             }
+            .searchable(text: $searchText, prompt: "Search exercises")
             .navigationTitle("Progress")
         }
     }
@@ -60,6 +128,36 @@ struct ProgressView: View {
         }
 
         return streak
+    }
+}
+
+private struct RecentExercise: Identifiable {
+    let id: String
+    let exercise: Exercise?
+    let exerciseName: String
+    let lastPerformedAt: Date
+    let completedSetCount: Int
+    let totalVolume: Double
+    let lastWeight: Double
+    let lastRepetitions: Int
+}
+
+private struct RecentExerciseRow: View {
+    let recentExercise: RecentExercise
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(recentExercise.exerciseName)
+                .font(.headline)
+
+            Text(recentExercise.lastPerformedAt, format: .dateTime.month().day().hour().minute())
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Text("\(recentExercise.completedSetCount) sets · last \(recentExercise.lastWeight.formatted(.number.precision(.fractionLength(0...2)))) x \(recentExercise.lastRepetitions) · volume \(recentExercise.totalVolume.formatted(.number.precision(.fractionLength(0...0))))")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+        }
     }
 }
 

@@ -6,6 +6,7 @@ struct WorkoutSessionView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
+    @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
     @Bindable var workout: Workout
     @State private var isAddingExercise = false
     @State private var elapsedSeconds = 0
@@ -34,7 +35,10 @@ struct WorkoutSessionView: View {
                 }
 
                 ForEach(orderedExercises) { workoutExercise in
-                    WorkoutExerciseEditor(workoutExercise: workoutExercise)
+                    WorkoutExerciseEditor(
+                        workoutExercise: workoutExercise,
+                        lastReportedSet: lastReportedSet(for: workoutExercise)
+                    )
                 }
                 .onDelete(perform: deleteExercises)
             }
@@ -90,5 +94,38 @@ struct WorkoutSessionView: View {
             modelContext.delete(orderedExercises[offset])
         }
         try? modelContext.save()
+    }
+
+    private func lastReportedSet(for workoutExercise: WorkoutExercise) -> LastReportedLiftSet? {
+        let matchingCompletedSets = workouts
+            .filter { $0.id != workout.id && $0.isCompleted }
+            .flatMap { historicalWorkout in
+                historicalWorkout.exercises
+                    .filter { historicalExercise in
+                        exercisesMatch(historicalExercise, workoutExercise)
+                    }
+                    .flatMap { historicalExercise in
+                        historicalExercise.sets
+                            .filter(\.isCompleted)
+                            .compactMap { set -> LastReportedLiftSet? in
+                                guard let completedAt = set.completedAt ?? historicalWorkout.endDate else { return nil }
+                                return LastReportedLiftSet(
+                                    weight: set.weight,
+                                    repetitions: set.repetitions,
+                                    completedAt: completedAt
+                                )
+                            }
+                    }
+            }
+
+        return matchingCompletedSets.max { $0.completedAt < $1.completedAt }
+    }
+
+    private func exercisesMatch(_ lhs: WorkoutExercise, _ rhs: WorkoutExercise) -> Bool {
+        if let lhsExerciseID = lhs.exercise?.id, let rhsExerciseID = rhs.exercise?.id {
+            return lhsExerciseID == rhsExerciseID
+        }
+
+        return lhs.exerciseNameSnapshot.localizedCaseInsensitiveCompare(rhs.exerciseNameSnapshot) == .orderedSame
     }
 }

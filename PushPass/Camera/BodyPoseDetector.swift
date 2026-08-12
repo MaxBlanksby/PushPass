@@ -15,11 +15,9 @@ enum BodyPoseDetector {
             leftShoulder: joint(points[.leftShoulder]),
             leftElbow: joint(points[.leftElbow]),
             leftWrist: joint(points[.leftWrist]),
-            leftHip: joint(points[.leftHip]),
             rightShoulder: joint(points[.rightShoulder]),
             rightElbow: joint(points[.rightElbow]),
-            rightWrist: joint(points[.rightWrist]),
-            rightHip: joint(points[.rightHip])
+            rightWrist: joint(points[.rightWrist])
         )
     }
 

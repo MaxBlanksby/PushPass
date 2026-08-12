@@ -47,7 +47,7 @@ struct EarnView: View {
                         Label("Begin Challenge", systemImage: "camera.fill")
                     }
                 } footer: {
-                    Text("Camera frames are processed on device and are not saved. In debug builds, Simulate Rep is available for simulator testing.")
+                    Text("Camera frames are processed on device and are not saved.")
                 }
 
                 Section("Previous Challenges") {
