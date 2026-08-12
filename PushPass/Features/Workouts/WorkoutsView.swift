@@ -234,7 +234,7 @@ private struct CustomWorkoutBuilderView: View {
     private var availableExercises: [Exercise] {
         allExercises
             .filter { !$0.isArchived }
-            .filter { searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText) }
+            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
     }
 
     private var selectedExercises: [Exercise] {
@@ -307,12 +307,7 @@ private struct CustomWorkoutBuilderView: View {
                             Button {
                                 toggleSelection(for: exercise)
                             } label: {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(exercise.name)
-                                    Text("\(exercise.muscleGroup.rawValue) · \(exercise.equipment.rawValue)")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
+                                ExerciseSummaryRow(exercise: exercise)
 
                                 Spacer()
 

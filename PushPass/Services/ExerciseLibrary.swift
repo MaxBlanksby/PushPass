@@ -16,14 +16,39 @@ enum ExerciseLibrary {
     @MainActor
     static func seedIfNeeded(in context: ModelContext) {
         let existingExercises = (try? context.fetch(FetchDescriptor<Exercise>())) ?? []
-        var existingNames = Set(existingExercises.map { normalizedName($0.name) })
-
-        for exercise in builtInExercises {
+        let seeds = exerciseSeeds
+        let canonicalNames = Set(seeds.map { normalizedName($0.name) })
+        var existingByName: [String: Exercise] = [:]
+        for exercise in existingExercises {
             let normalized = normalizedName(exercise.name)
-            guard !existingNames.contains(normalized) else { continue }
+            if existingByName[normalized] == nil || existingByName[normalized]?.isCustom == true {
+                existingByName[normalized] = exercise
+            }
+        }
 
-            context.insert(exercise)
-            existingNames.insert(normalized)
+        for seed in seeds {
+            let normalized = normalizedName(seed.name)
+
+            if let existing = existingByName[normalized], !existing.isCustom {
+                existing.name = seed.name
+                existing.muscleGroup = seed.muscleGroup
+                existing.equipment = seed.equipment
+                existing.instructions = seed.instructions
+                existing.isArchived = false
+            } else {
+                let exercise = Exercise(
+                    name: seed.name,
+                    muscleGroup: seed.muscleGroup,
+                    equipment: seed.equipment,
+                    instructions: seed.instructions
+                )
+                context.insert(exercise)
+                existingByName[normalized] = exercise
+            }
+        }
+
+        for exercise in existingExercises where !exercise.isCustom {
+            exercise.isArchived = !canonicalNames.contains(normalizedName(exercise.name))
         }
 
         if ((try? context.fetch(FetchDescriptor<UserPreferences>()))?.isEmpty == true) {
@@ -34,12 +59,93 @@ enum ExerciseLibrary {
     }
 
     private static var exerciseSeeds: [ExerciseSeed] {
+        if let jsonSeeds = jsonExerciseSeeds {
+            return jsonSeeds
+        }
+
         guard let url = Bundle.main.url(forResource: "PushPass_Exercise_Bank", withExtension: "txt"),
               let text = try? String(contentsOf: url, encoding: .utf8) else {
             return fallbackExerciseSeeds
         }
 
         return parseExerciseBank(text)
+    }
+
+    private static var jsonExerciseSeeds: [ExerciseSeed]? {
+        guard let url = Bundle.main.url(forResource: "PushPass_Exercise_Library", withExtension: "json"),
+              let data = try? Data(contentsOf: url),
+              let entries = try? JSONDecoder().decode([ExerciseLibraryEntry].self, from: data) else {
+            return nil
+        }
+
+        var seenNames = Set<String>()
+        let seeds = entries.compactMap { entry -> ExerciseSeed? in
+            let normalized = normalizedName(entry.name)
+            guard !seenNames.contains(normalized) else { return nil }
+            seenNames.insert(normalized)
+
+            let details = ExerciseDetails(
+                name: entry.name,
+                category: entry.category,
+                primaryMuscles: entry.primaryMuscles,
+                secondaryMuscles: entry.secondaryMuscles,
+                equipment: entry.equipment,
+                exerciseType: entry.exerciseType,
+                setup: entry.setup,
+                formCues: entry.formCues
+            )
+
+            return ExerciseSeed(
+                name: entry.name,
+                muscleGroup: muscleGroup(for: entry.category),
+                equipment: inferredEquipment(for: entry.equipment),
+                instructions: encodedDetails(details)
+            )
+        }
+
+        return seeds.isEmpty ? nil : seeds
+    }
+
+    static func details(for exercise: Exercise) -> ExerciseDetails? {
+        if let data = exercise.instructions.data(using: .utf8),
+           let details = try? JSONDecoder().decode(ExerciseDetails.self, from: data) {
+            return details
+        }
+
+        guard !exercise.instructions.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            return nil
+        }
+
+        return ExerciseDetails(
+            name: exercise.name,
+            category: exercise.muscleGroup.rawValue,
+            primaryMuscles: exercise.muscleGroup.rawValue,
+            secondaryMuscles: "",
+            equipment: exercise.equipment.rawValue,
+            exerciseType: "",
+            setup: "",
+            formCues: exercise.instructions
+        )
+    }
+
+    static func matches(_ exercise: Exercise, searchText: String) -> Bool {
+        let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !query.isEmpty else { return true }
+
+        let searchableValues = [
+            exercise.name,
+            exercise.muscleGroup.rawValue,
+            exercise.equipment.rawValue,
+            details(for: exercise)?.primaryMuscles,
+            details(for: exercise)?.secondaryMuscles,
+            details(for: exercise)?.equipment,
+            details(for: exercise)?.exerciseType
+        ].compactMap(\.self)
+
+        return searchableValues.contains { value in
+            value.localizedCaseInsensitiveContains(query) ||
+            searchKey(for: value).contains(searchKey(for: query))
+        }
     }
 
     private static let fallbackExerciseSeeds: [ExerciseSeed] = [
@@ -77,6 +183,20 @@ enum ExerciseLibrary {
         "Rehabilitation and Stability": .other
     ]
 
+    private static func muscleGroup(for category: String) -> MuscleGroup {
+        let normalizedCategory = category.replacingOccurrences(of: "&", with: "and")
+        return sectionMuscleGroups[category] ?? sectionMuscleGroups[normalizedCategory] ?? .other
+    }
+
+    private static func encodedDetails(_ details: ExerciseDetails) -> String {
+        guard let data = try? JSONEncoder().encode(details),
+              let text = String(data: data, encoding: .utf8) else {
+            return details.formCues
+        }
+
+        return text
+    }
+
     private static func parseExerciseBank(_ text: String) -> [ExerciseSeed] {
         var currentMuscleGroup: MuscleGroup?
         var seenNames = Set<String>()
@@ -105,6 +225,16 @@ enum ExerciseLibrary {
 
     private static func normalizedName(_ name: String) -> String {
         name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+    }
+
+    private static func searchKey(for text: String) -> String {
+        text
+            .folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)
+            .map { component in
+                component.hasSuffix("s") ? String(component.dropLast()) : component
+            }
+            .joined()
     }
 
     private static func inferredEquipment(for exerciseName: String) -> Equipment {
@@ -202,5 +332,38 @@ private struct ExerciseSeed {
         self.muscleGroup = muscleGroup
         self.equipment = equipment
         self.instructions = instructions
+    }
+}
+
+struct ExerciseDetails: Codable, Equatable {
+    let name: String
+    let category: String
+    let primaryMuscles: String
+    let secondaryMuscles: String
+    let equipment: String
+    let exerciseType: String
+    let setup: String
+    let formCues: String
+}
+
+private struct ExerciseLibraryEntry: Decodable {
+    let category: String
+    let name: String
+    let primaryMuscles: String
+    let secondaryMuscles: String
+    let equipment: String
+    let exerciseType: String
+    let setup: String
+    let formCues: String
+
+    private enum CodingKeys: String, CodingKey {
+        case category
+        case name
+        case primaryMuscles = "primary_muscles"
+        case secondaryMuscles = "secondary_muscles"
+        case equipment
+        case exerciseType = "exercise_type"
+        case setup
+        case formCues = "form_cues"
     }
 }

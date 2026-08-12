@@ -5,6 +5,7 @@ struct WorkoutExerciseEditor: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var workoutExercise: WorkoutExercise
     let topReportedSet: ReportedLiftSet?
+    let onShowExerciseInfo: (Exercise) -> Void
 
     private var orderedSets: [LiftSet] {
         workoutExercise.sets.sorted { $0.setNumber < $1.setNumber }
@@ -16,18 +17,34 @@ struct WorkoutExerciseEditor: View {
 
     var body: some View {
         Section {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(workoutExercise.exerciseNameSnapshot)
-                    .font(.headline)
+            HStack(alignment: .top, spacing: 12) {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(workoutExercise.exerciseNameSnapshot)
+                        .font(.headline)
 
-                Text("\(completedSetCount) of \(workoutExercise.sets.count) sets done")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
-
-                if let topReportedSet {
-                    Text("Top set: \(topReportedSet.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(topReportedSet.repetitions) on \(topReportedSet.completedAt.formatted(date: .abbreviated, time: .omitted))")
-                        .font(.caption)
+                    Text("\(completedSetCount) of \(workoutExercise.sets.count) sets done")
+                        .font(.caption.weight(.semibold))
                         .foregroundStyle(.secondary)
+
+                    if let topReportedSet {
+                        Text("Top set: \(topReportedSet.weight.formatted(.number.precision(.fractionLength(0...2)))) x \(topReportedSet.repetitions) on \(topReportedSet.completedAt.formatted(date: .abbreviated, time: .omitted))")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+                if workoutExercise.exercise != nil {
+                    Button {
+                        if let exercise = workoutExercise.exercise {
+                            onShowExerciseInfo(exercise)
+                        }
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .imageScale(.large)
+                    }
+                    .buttonStyle(.borderless)
+                    .accessibilityLabel("Show \(workoutExercise.exerciseNameSnapshot) information")
                 }
             }
 

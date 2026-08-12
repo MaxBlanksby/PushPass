@@ -9,12 +9,17 @@ struct WorkoutSessionView: View {
     @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
     @Bindable var workout: Workout
     @State private var isAddingExercise = false
+    @State private var exerciseBeingViewed: Exercise?
     @State private var elapsedSeconds = 0
 
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     private var orderedExercises: [WorkoutExercise] {
         workout.exercises.sorted { $0.orderIndex < $1.orderIndex }
+    }
+
+    private var completedWorkouts: [Workout] {
+        workouts.filter(\.isCompleted)
     }
 
     var body: some View {
@@ -38,7 +43,9 @@ struct WorkoutSessionView: View {
                     WorkoutExerciseEditor(
                         workoutExercise: workoutExercise,
                         topReportedSet: topReportedSet(for: workoutExercise)
-                    )
+                    ) { exercise in
+                        exerciseBeingViewed = exercise
+                    }
                 }
                 .onDelete(perform: deleteExercises)
             }
@@ -66,6 +73,18 @@ struct WorkoutSessionView: View {
                 ExercisePickerView { exercise in
                     addExercise(exercise)
                     isAddingExercise = false
+                }
+            }
+            .sheet(item: $exerciseBeingViewed) { exercise in
+                NavigationStack {
+                    ExerciseProgressView(exercise: exercise, workouts: completedWorkouts)
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Done") {
+                                    exerciseBeingViewed = nil
+                                }
+                            }
+                        }
                 }
             }
             .onReceive(timer) { _ in

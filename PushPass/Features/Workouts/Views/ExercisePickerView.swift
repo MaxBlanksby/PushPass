@@ -16,7 +16,7 @@ struct ExercisePickerView: View {
     private var filteredExercises: [Exercise] {
         exercises
             .filter { !$0.isArchived }
-            .filter { searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText) }
+            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
     }
 
     var body: some View {
@@ -28,13 +28,8 @@ struct ExercisePickerView: View {
                             Button {
                                 onSelect(exercise)
                             } label: {
-                                VStack(alignment: .leading) {
-                                    Text(exercise.name)
-                                    Text("\(exercise.muscleGroup.rawValue) · \(exercise.equipment.rawValue)")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                                ExerciseSummaryRow(exercise: exercise)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             .buttonStyle(.plain)
 

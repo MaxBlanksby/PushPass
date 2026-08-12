@@ -15,7 +15,7 @@ struct ProgressView: View {
     private var visibleExercises: [Exercise] {
         exercises
             .filter { !$0.isArchived }
-            .filter { searchText.isEmpty || $0.name.localizedCaseInsensitiveContains(searchText) }
+            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
     }
 
     private var recentExercises: [RecentExercise] {
@@ -100,7 +100,7 @@ struct ProgressView: View {
                             NavigationLink {
                                 ExerciseProgressView(exercise: exercise, workouts: completedWorkouts)
                             } label: {
-                                Text(exercise.name)
+                                ExerciseSummaryRow(exercise: exercise)
                             }
                         }
                     }
@@ -155,7 +155,7 @@ private struct RecentExerciseRow: View {
     }
 }
 
-private struct ExerciseProgressView: View {
+struct ExerciseProgressView: View {
     @Environment(\.modelContext) private var modelContext
     let exercise: Exercise
     let workouts: [Workout]
@@ -208,6 +208,8 @@ private struct ExerciseProgressView: View {
 
     var body: some View {
         List {
+            ExerciseInfoView(exercise: exercise)
+
             Section("Best") {
                 LabeledContent("Best weight", value: bestWeight.formatted(.number.precision(.fractionLength(0...2))))
                 LabeledContent("Best reps", value: "\(bestReps)")
