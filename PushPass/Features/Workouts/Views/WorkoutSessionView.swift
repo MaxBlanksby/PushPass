@@ -2,15 +2,23 @@ import SwiftData
 import SwiftUI
 internal import Combine
 
+#if canImport(UIKit)
+import UIKit
+#endif
+
 struct WorkoutSessionView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
+    @Query private var preferences: [UserPreferences]
     @Bindable var workout: Workout
     @State private var isAddingExercise = false
     @State private var exerciseBeingViewed: Exercise?
     @State private var elapsedSeconds = 0
+    @State private var currentDate = Date.now
+    @State private var restTimerEndDates: [UUID: Date] = [:]
+    @FocusState private var focusedInput: WorkoutInputField?
 
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -22,11 +30,20 @@ struct WorkoutSessionView: View {
         workouts.filter(\.isCompleted)
     }
 
+    private var prefs: UserPreferences {
+        preferences.first ?? UserPreferences()
+    }
+
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     TextField("Workout name", text: $workout.name)
+                        .submitLabel(.done)
+                        .focused($focusedInput, equals: .workoutName)
+                        .onSubmit {
+                            dismissKeyboard()
+                        }
                     Text("Elapsed: \(Duration.seconds(elapsedSeconds).formatted(.time(pattern: .minuteSecond)))")
                         .foregroundStyle(.secondary)
                 }
@@ -42,14 +59,23 @@ struct WorkoutSessionView: View {
                 ForEach(orderedExercises) { workoutExercise in
                     WorkoutExerciseEditor(
                         workoutExercise: workoutExercise,
-                        topReportedSet: topReportedSet(for: workoutExercise)
-                    ) { exercise in
-                        exerciseBeingViewed = exercise
-                    }
+                        topReportedSet: topReportedSet(for: workoutExercise),
+                        defaultRestSeconds: prefs.defaultRestSeconds,
+                        restRemainingSeconds: restRemainingSeconds(for: workoutExercise),
+                        upperRepTarget: max(workoutExercise.maximumRepTarget, prefs.preferredMaximumRepTarget),
+                        focusedInput: $focusedInput,
+                        onShowExerciseInfo: { exercise in
+                            exerciseBeingViewed = exercise
+                        },
+                        onStartRestTimer: {
+                            startRestTimer(for: workoutExercise)
+                        }
+                    )
                 }
                 .onDelete(perform: deleteExercises)
             }
             .navigationTitle("Active Workout")
+            .scrollDismissesKeyboard(.interactively)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Discard", role: .destructive) {
@@ -67,6 +93,15 @@ struct WorkoutSessionView: View {
                         dismiss()
                     }
                     .disabled(workout.exercises.isEmpty)
+                }
+
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+
+                    Button("Done") {
+                        dismissKeyboard()
+                    }
+                    .font(.headline)
                 }
             }
             .sheet(isPresented: $isAddingExercise) {
@@ -88,9 +123,28 @@ struct WorkoutSessionView: View {
                 }
             }
             .onReceive(timer) { _ in
-                elapsedSeconds = Int(Date.now.timeIntervalSince(workout.startDate))
+                currentDate = .now
+                elapsedSeconds = Int(currentDate.timeIntervalSince(workout.startDate))
             }
         }
+    }
+
+    private func restRemainingSeconds(for workoutExercise: WorkoutExercise) -> Int {
+        guard let endDate = restTimerEndDates[workoutExercise.id] else { return 0 }
+        return max(0, Int(ceil(endDate.timeIntervalSince(currentDate))))
+    }
+
+    private func startRestTimer(for workoutExercise: WorkoutExercise) {
+        currentDate = .now
+        restTimerEndDates[workoutExercise.id] = currentDate.addingTimeInterval(TimeInterval(prefs.defaultRestSeconds))
+    }
+
+    private func dismissKeyboard() {
+        focusedInput = nil
+
+        #if canImport(UIKit)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        #endif
     }
 
     private func addExercise(_ exercise: Exercise) {
@@ -98,6 +152,8 @@ struct WorkoutSessionView: View {
             orderIndex: workout.exercises.count,
             exercise: exercise,
             exerciseNameSnapshot: exercise.name,
+            minimumRepTarget: prefs.preferredMinimumRepTarget,
+            maximumRepTarget: prefs.preferredMaximumRepTarget,
             workout: workout
         )
         let set = LiftSet(setNumber: 1, workoutExercise: workoutExercise)

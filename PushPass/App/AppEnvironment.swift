@@ -13,7 +13,7 @@ final class DashboardState {
     var earnedMinutesAvailable: Int = 0
     var pushUpsCompletedToday: Int = 0
     var workoutsCompletedThisWeek: Int = 0
-    var dailyExerciseGoal: String = "Complete one challenge or workout"
+    var dailyExerciseGoal: String = "Complete a workout"
     var recentWorkoutSummary: String = "No workouts logged yet"
     var isScreenTimeAuthorized = false
     var hasRestrictedSelection = false

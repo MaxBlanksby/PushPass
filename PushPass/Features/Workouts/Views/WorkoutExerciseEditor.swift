@@ -5,7 +5,12 @@ struct WorkoutExerciseEditor: View {
     @Environment(\.modelContext) private var modelContext
     @Bindable var workoutExercise: WorkoutExercise
     let topReportedSet: ReportedLiftSet?
+    let defaultRestSeconds: Int
+    let restRemainingSeconds: Int
+    let upperRepTarget: Int
+    let focusedInput: FocusState<WorkoutInputField?>.Binding
     let onShowExerciseInfo: (Exercise) -> Void
+    let onStartRestTimer: () -> Void
 
     private var orderedSets: [LiftSet] {
         workoutExercise.sets.sorted { $0.setNumber < $1.setNumber }
@@ -13,6 +18,11 @@ struct WorkoutExerciseEditor: View {
 
     private var completedSetCount: Int {
         workoutExercise.sets.filter(\.isCompleted).count
+    }
+
+    private var shouldSuggestWeightIncrease: Bool {
+        guard let topReportedSet else { return false }
+        return topReportedSet.repetitions >= upperRepTarget
     }
 
     var body: some View {
@@ -31,6 +41,12 @@ struct WorkoutExerciseEditor: View {
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
+
+                    if shouldSuggestWeightIncrease {
+                        Label("Ready to increase weight", systemImage: "arrow.up.circle.fill")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(.green)
+                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
 
@@ -48,8 +64,16 @@ struct WorkoutExerciseEditor: View {
                 }
             }
 
-            ForEach(orderedSets) { set in
-                LiftSetEditor(set: set)
+            ForEach(Array(orderedSets.enumerated()), id: \.element.id) { index, set in
+                LiftSetEditor(set: set, focusedInput: focusedInput)
+
+                if index < orderedSets.count - 1 {
+                    RestTimerRow(
+                        remainingSeconds: restRemainingSeconds,
+                        defaultRestSeconds: defaultRestSeconds,
+                        onStart: onStartRestTimer
+                    )
+                }
             }
             .onDelete(perform: deleteSets)
 
@@ -61,6 +85,11 @@ struct WorkoutExerciseEditor: View {
 
             TextField("Exercise notes", text: $workoutExercise.notes, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
+                .submitLabel(.done)
+                .focused(focusedInput, equals: .notes(workoutExercise.id))
+                .onSubmit {
+                    focusedInput.wrappedValue = nil
+                }
         }
     }
 
@@ -85,6 +114,39 @@ struct WorkoutExerciseEditor: View {
     }
 }
 
+private struct RestTimerRow: View {
+    let remainingSeconds: Int
+    let defaultRestSeconds: Int
+    let onStart: () -> Void
+
+    private var labelText: String {
+        remainingSeconds > 0 ? formattedTime(remainingSeconds) : "Rest \(formattedTime(defaultRestSeconds))"
+    }
+
+    var body: some View {
+        HStack {
+            Spacer()
+
+            Button(action: onStart) {
+                Label(labelText, systemImage: remainingSeconds > 0 ? "timer" : "clock")
+                    .font(.caption.weight(.semibold))
+                    .monospacedDigit()
+            }
+            .buttonStyle(.borderless)
+            .accessibilityLabel("Start rest timer")
+
+            Spacer()
+        }
+        .listRowSeparator(.hidden)
+    }
+
+    private func formattedTime(_ seconds: Int) -> String {
+        let minutes = max(0, seconds) / 60
+        let remainingSeconds = max(0, seconds) % 60
+        return "\(minutes):\(String(format: "%02d", remainingSeconds))"
+    }
+}
+
 struct ReportedLiftSet {
     let weight: Double
     let repetitions: Int
@@ -97,6 +159,7 @@ struct ReportedLiftSet {
 
 private struct LiftSetEditor: View {
     @Bindable var set: LiftSet
+    let focusedInput: FocusState<WorkoutInputField?>.Binding
 
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
@@ -113,6 +176,11 @@ private struct LiftSetEditor: View {
                 TextField("0", value: $set.weight, format: .number.precision(.fractionLength(0...2)))
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
+                    .submitLabel(.done)
+                    .focused(focusedInput, equals: .weight(set.id))
+                    .onSubmit {
+                        focusedInput.wrappedValue = nil
+                    }
             }
 
             VStack(alignment: .leading, spacing: 4) {
@@ -122,6 +190,11 @@ private struct LiftSetEditor: View {
                 TextField("0", value: $set.repetitions, format: .number)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.numberPad)
+                    .submitLabel(.done)
+                    .focused(focusedInput, equals: .repetitions(set.id))
+                    .onSubmit {
+                        focusedInput.wrappedValue = nil
+                    }
             }
 
             Button {
@@ -135,4 +208,11 @@ private struct LiftSetEditor: View {
             .accessibilityLabel(set.isCompleted ? "Set complete" : "Set incomplete")
         }
     }
+}
+
+enum WorkoutInputField: Hashable {
+    case workoutName
+    case weight(UUID)
+    case repetitions(UUID)
+    case notes(UUID)
 }

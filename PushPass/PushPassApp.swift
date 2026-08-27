@@ -27,7 +27,10 @@ struct PushPassApp: App {
             LiftSet.self,
             PushUpChallenge.self,
             DailyRewardRecord.self,
-            EarnedAccessSession.self
+            EarnedAccessSession.self,
+            TimeWallet.self,
+            WalletTransaction.self,
+            PushupEconomySettings.self
         ])
     }
 }

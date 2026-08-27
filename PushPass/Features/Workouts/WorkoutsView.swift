@@ -4,6 +4,7 @@ import SwiftUI
 struct WorkoutsView: View {
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Exercise.name) private var exercises: [Exercise]
+    @Query private var preferences: [UserPreferences]
     @Query(sort: \WorkoutTemplate.updatedAt, order: .reverse) private var workoutTemplates: [WorkoutTemplate]
     @Query(sort: \Workout.startDate, order: .reverse) private var workouts: [Workout]
     @State private var activeWorkout: Workout?
@@ -17,6 +18,10 @@ struct WorkoutsView: View {
 
     private var recentCompletedWorkouts: [Workout] {
         Array(completedWorkouts.prefix(3))
+    }
+
+    private var prefs: UserPreferences {
+        preferences.first ?? UserPreferences()
     }
 
     var body: some View {
@@ -142,6 +147,8 @@ struct WorkoutsView: View {
                 orderIndex: index,
                 exercise: templateExercise.exercise,
                 exerciseNameSnapshot: templateExercise.exerciseNameSnapshot,
+                minimumRepTarget: prefs.preferredMinimumRepTarget,
+                maximumRepTarget: prefs.preferredMaximumRepTarget,
                 workout: workout
             )
             workout.exercises.append(workoutExercise)

@@ -450,5 +450,5 @@ private func estimatedOneRepMaxValue(for set: LiftSet) -> Double {
 
 #Preview {
     ProgressView()
-        .modelContainer(for: [Workout.self, WorkoutExercise.self, LiftSet.self, Exercise.self, DailyRewardRecord.self], inMemory: true)
+        .modelContainer(for: [Workout.self, WorkoutExercise.self, LiftSet.self, Exercise.self], inMemory: true)
 }

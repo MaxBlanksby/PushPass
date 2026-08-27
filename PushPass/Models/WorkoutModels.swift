@@ -59,6 +59,8 @@ final class UserPreferences {
     var minutesPerChallenge: Int
     var maximumEarnedMinutesPerDay: Int
     var progressiveOverloadEnabled: Bool
+    var preferredMinimumRepTarget: Int = 6
+    var preferredMaximumRepTarget: Int = 10
     var createdAt: Date
     var updatedAt: Date
 
@@ -77,6 +79,8 @@ final class UserPreferences {
         minutesPerChallenge: Int = AppConstants.Rewards.defaultMinutesPerChallenge,
         maximumEarnedMinutesPerDay: Int = AppConstants.Rewards.defaultMaximumEarnedMinutesPerDay,
         progressiveOverloadEnabled: Bool = true,
+        preferredMinimumRepTarget: Int = 6,
+        preferredMaximumRepTarget: Int = 10,
         createdAt: Date = .now,
         updatedAt: Date = .now
     ) {
@@ -89,6 +93,8 @@ final class UserPreferences {
         self.minutesPerChallenge = minutesPerChallenge
         self.maximumEarnedMinutesPerDay = maximumEarnedMinutesPerDay
         self.progressiveOverloadEnabled = progressiveOverloadEnabled
+        self.preferredMinimumRepTarget = preferredMinimumRepTarget
+        self.preferredMaximumRepTarget = preferredMaximumRepTarget
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }

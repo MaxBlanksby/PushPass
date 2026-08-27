@@ -5,8 +5,17 @@ struct PushUpChallengeView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppEnvironment.self) private var environment
     @Environment(\.modelContext) private var modelContext
+    @Query private var economySettings: [PushupEconomySettings]
     @State private var viewModel = PushUpChallengeViewModel()
     @State private var rewardMessage: String?
+
+    private var economy: PushupEconomySettings {
+        economySettings.first ?? PushupEconomySettings()
+    }
+
+    private var pendingEarnedSeconds: Int {
+        viewModel.repetitionCount * economy.secondsPerPushup
+    }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -39,7 +48,7 @@ struct PushUpChallengeView: View {
                     .monospacedDigit()
                 Text("verified push-ups")
                     .foregroundStyle(.secondary)
-                Text("\(viewModel.repetitionCount) minutes ready to log")
+                Text("\(RewardService.formattedDuration(pendingEarnedSeconds)) ready to bank")
                     .font(.caption.weight(.semibold))
                     .foregroundStyle(.secondary)
                 Text(elbowAngleText)
@@ -73,6 +82,10 @@ struct PushUpChallengeView: View {
         }
         .padding(PushPassTheme.screenPadding)
         .navigationTitle("Earn Minutes")
+        .task {
+            _ = RewardService.economySettings(context: modelContext)
+            try? modelContext.save()
+        }
         .onAppear {
             viewModel.start()
         }
@@ -118,10 +131,9 @@ struct PushUpChallengeView: View {
 
         do {
             let outcome = try RewardService.grantReward(for: challenge, context: modelContext)
-            let activeSession = RewardService.currentActiveSession(context: modelContext)
             ScreenTimeSetupService.syncRestrictions(
                 dashboard: environment.dashboard,
-                accessExpirationDate: activeSession?.expirationDate
+                accessExpirationDate: RewardService.currentActiveSession(context: modelContext)?.expirationDate
             )
             rewardMessage = outcome.explanation
         } catch {

@@ -62,7 +62,7 @@ enum ScreenTimeSetupService {
             return nil
         } catch {
             refreshDashboard(dashboard)
-            return error.localizedDescription
+            return setupErrorMessage(for: error)
         }
         #else
         refreshDashboard(dashboard)
@@ -135,6 +135,19 @@ enum ScreenTimeSetupService {
         @unknown default:
             false
         }
+    }
+
+    static func setupErrorMessage(for error: Error) -> String {
+        let description = error.localizedDescription
+        let lowercasedDescription = description.lowercased()
+
+        if lowercasedDescription.contains("helper application") ||
+            lowercasedDescription.contains("couldn’t communicate") ||
+            lowercasedDescription.contains("couldn't communicate") {
+            return "PushPass could not reach Apple’s Screen Time helper. In Xcode, add the Family Controls capability and App Groups capability to the PushPass target, set the app group to \(AppConstants.ScreenTime.appGroupIdentifier), then rebuild on your iPhone. If this is already enabled, restart the phone and try again."
+        }
+
+        return description
     }
     #endif
 }

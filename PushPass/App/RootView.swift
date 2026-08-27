@@ -2,9 +2,12 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
-    @Environment(AppEnvironment.self) private var environment
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \EarnedAccessSession.expirationDate, order: .reverse) private var sessions: [EarnedAccessSession]
+    @AppStorage("appearanceMode") private var appearanceModeRawValue = AppAppearanceMode.light.rawValue
+
+    private var appearanceMode: AppAppearanceMode {
+        AppAppearanceMode(rawValue: appearanceModeRawValue) ?? .light
+    }
 
     var body: some View {
         TabView {
@@ -18,41 +21,15 @@ struct RootView: View {
                     Label("Progress", systemImage: "chart.xyaxis.line")
                 }
 
-            EarnView()
+            SettingsView()
                 .tabItem {
-                    Label("Earn", systemImage: "figure.strengthtraining.traditional")
+                    Label("Settings", systemImage: "gearshape")
                 }
         }
+        .preferredColorScheme(appearanceMode.colorScheme)
         .task {
             ExerciseLibrary.seedIfNeeded(in: modelContext)
-            syncRestrictions()
-        }
-        .task {
-            await refreshRestrictionsLoop()
-        }
-    }
-
-    private var activeAccessExpirationDate: Date? {
-        sessions.first { $0.isActive && $0.expirationDate > .now }?.expirationDate
-    }
-
-    private func syncRestrictions() {
-        RewardService.expireFinishedSessions(context: modelContext)
-        ScreenTimeSetupService.syncRestrictions(
-            dashboard: environment.dashboard,
-            accessExpirationDate: activeAccessExpirationDate
-        )
-    }
-
-    private func refreshRestrictionsLoop() async {
-        while !Task.isCancelled {
-            syncRestrictions()
-
-            do {
-                try await Task.sleep(for: .seconds(15))
-            } catch {
-                return
-            }
+            try? modelContext.save()
         }
     }
 }
