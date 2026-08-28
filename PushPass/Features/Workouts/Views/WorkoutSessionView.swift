@@ -17,7 +17,7 @@ struct WorkoutSessionView: View {
     @State private var exerciseBeingViewed: Exercise?
     @State private var elapsedSeconds = 0
     @State private var currentDate = Date.now
-    @State private var restTimerEndDates: [UUID: Date] = [:]
+    @State private var restTimerEndDatesBySetID: [UUID: Date] = [:]
     @FocusState private var focusedInput: WorkoutInputField?
 
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -46,10 +46,14 @@ struct WorkoutSessionView: View {
                         }
                     Text("Elapsed: \(Duration.seconds(elapsedSeconds).formatted(.time(pattern: .minuteSecond)))")
                         .foregroundStyle(.secondary)
+                        .onTapGesture {
+                            dismissKeyboard()
+                        }
                 }
 
                 Section {
                     Button {
+                        dismissKeyboard()
                         isAddingExercise = true
                     } label: {
                         Label("Add Exercise", systemImage: "plus")
@@ -61,14 +65,21 @@ struct WorkoutSessionView: View {
                         workoutExercise: workoutExercise,
                         topReportedSet: topReportedSet(for: workoutExercise),
                         defaultRestSeconds: prefs.defaultRestSeconds,
-                        restRemainingSeconds: restRemainingSeconds(for: workoutExercise),
+                        restRemainingSecondsForSet: { set in
+                            restRemainingSeconds(for: set)
+                        },
+                        isRestTimerFinishedForSet: { set in
+                            isRestTimerFinished(for: set)
+                        },
                         upperRepTarget: max(workoutExercise.maximumRepTarget, prefs.preferredMaximumRepTarget),
                         focusedInput: $focusedInput,
                         onShowExerciseInfo: { exercise in
+                            dismissKeyboard()
                             exerciseBeingViewed = exercise
                         },
-                        onStartRestTimer: {
-                            startRestTimer(for: workoutExercise)
+                        onStartRestTimer: { set in
+                            dismissKeyboard()
+                            startRestTimer(for: set)
                         }
                     )
                 }
@@ -79,6 +90,7 @@ struct WorkoutSessionView: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Discard", role: .destructive) {
+                        dismissKeyboard()
                         modelContext.delete(workout)
                         try? modelContext.save()
                         dismiss()
@@ -87,6 +99,7 @@ struct WorkoutSessionView: View {
 
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Finish") {
+                        dismissKeyboard()
                         workout.isCompleted = true
                         workout.endDate = .now
                         try? modelContext.save()
@@ -129,14 +142,19 @@ struct WorkoutSessionView: View {
         }
     }
 
-    private func restRemainingSeconds(for workoutExercise: WorkoutExercise) -> Int {
-        guard let endDate = restTimerEndDates[workoutExercise.id] else { return 0 }
+    private func restRemainingSeconds(for set: LiftSet) -> Int {
+        guard let endDate = restTimerEndDatesBySetID[set.id] else { return 0 }
         return max(0, Int(ceil(endDate.timeIntervalSince(currentDate))))
     }
 
-    private func startRestTimer(for workoutExercise: WorkoutExercise) {
+    private func isRestTimerFinished(for set: LiftSet) -> Bool {
+        guard let endDate = restTimerEndDatesBySetID[set.id] else { return false }
+        return endDate <= currentDate
+    }
+
+    private func startRestTimer(for set: LiftSet) {
         currentDate = .now
-        restTimerEndDates[workoutExercise.id] = currentDate.addingTimeInterval(TimeInterval(prefs.defaultRestSeconds))
+        restTimerEndDatesBySetID[set.id] = currentDate.addingTimeInterval(TimeInterval(prefs.defaultRestSeconds))
     }
 
     private func dismissKeyboard() {

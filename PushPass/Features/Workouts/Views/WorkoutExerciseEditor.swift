@@ -6,11 +6,12 @@ struct WorkoutExerciseEditor: View {
     @Bindable var workoutExercise: WorkoutExercise
     let topReportedSet: ReportedLiftSet?
     let defaultRestSeconds: Int
-    let restRemainingSeconds: Int
+    let restRemainingSecondsForSet: (LiftSet) -> Int
+    let isRestTimerFinishedForSet: (LiftSet) -> Bool
     let upperRepTarget: Int
     let focusedInput: FocusState<WorkoutInputField?>.Binding
     let onShowExerciseInfo: (Exercise) -> Void
-    let onStartRestTimer: () -> Void
+    let onStartRestTimer: (LiftSet) -> Void
 
     private var orderedSets: [LiftSet] {
         workoutExercise.sets.sorted { $0.setNumber < $1.setNumber }
@@ -69,23 +70,28 @@ struct WorkoutExerciseEditor: View {
 
                 if index < orderedSets.count - 1 {
                     RestTimerRow(
-                        remainingSeconds: restRemainingSeconds,
+                        remainingSeconds: restRemainingSecondsForSet(set),
+                        isFinished: isRestTimerFinishedForSet(set),
                         defaultRestSeconds: defaultRestSeconds,
-                        onStart: onStartRestTimer
+                        onStart: {
+                            onStartRestTimer(set)
+                        }
                     )
                 }
             }
             .onDelete(perform: deleteSets)
 
             Button {
+                focusedInput.wrappedValue = nil
                 addSet()
             } label: {
                 Label("Add Set", systemImage: "plus.circle")
             }
+            .buttonStyle(.borderless)
 
             TextField("Exercise notes", text: $workoutExercise.notes, axis: .vertical)
                 .textFieldStyle(.roundedBorder)
-                .submitLabel(.done)
+                .submitLabel(.return)
                 .focused(focusedInput, equals: .notes(workoutExercise.id))
                 .onSubmit {
                     focusedInput.wrappedValue = nil
@@ -96,7 +102,7 @@ struct WorkoutExerciseEditor: View {
     private func addSet() {
         let previous = orderedSets.last
         let set = LiftSet(
-            setNumber: workoutExercise.sets.count + 1,
+            setNumber: (orderedSets.map(\.setNumber).max() ?? 0) + 1,
             weight: previous?.weight ?? 0,
             repetitions: previous?.repetitions ?? 0,
             workoutExercise: workoutExercise
@@ -116,11 +122,16 @@ struct WorkoutExerciseEditor: View {
 
 private struct RestTimerRow: View {
     let remainingSeconds: Int
+    let isFinished: Bool
     let defaultRestSeconds: Int
     let onStart: () -> Void
 
     private var labelText: String {
-        remainingSeconds > 0 ? formattedTime(remainingSeconds) : "Rest \(formattedTime(defaultRestSeconds))"
+        if remainingSeconds > 0 {
+            return formattedTime(remainingSeconds)
+        }
+
+        return isFinished ? "Rest complete" : "Rest \(formattedTime(defaultRestSeconds))"
     }
 
     var body: some View {
@@ -131,9 +142,10 @@ private struct RestTimerRow: View {
                 Label(labelText, systemImage: remainingSeconds > 0 ? "timer" : "clock")
                     .font(.caption.weight(.semibold))
                     .monospacedDigit()
+                    .foregroundStyle(isFinished ? .red : .accentColor)
             }
             .buttonStyle(.borderless)
-            .accessibilityLabel("Start rest timer")
+            .accessibilityLabel(isFinished ? "Rest timer complete" : "Start rest timer")
 
             Spacer()
         }
@@ -198,6 +210,7 @@ private struct LiftSetEditor: View {
             }
 
             Button {
+                focusedInput.wrappedValue = nil
                 set.isCompleted.toggle()
                 set.completedAt = set.isCompleted ? .now : nil
             } label: {
