@@ -207,6 +207,7 @@ private struct CustomWorkoutBuilderView: View {
     @State private var customExerciseName = ""
     @State private var newlyCreatedExercises: [Exercise] = []
     @State private var exercisePendingDeletion: Exercise?
+    @State private var editMode: EditMode = .inactive
 
     let template: WorkoutTemplate?
     let onSave: () -> Void
@@ -286,6 +287,13 @@ private struct CustomWorkoutBuilderView: View {
                                 }
                             }
                         }
+                        .onMove(perform: moveSelectedExercises)
+
+                        Button {
+                            editMode = editMode.isEditing ? .inactive : .active
+                        } label: {
+                            Label(editMode.isEditing ? "Done" : "Edit Order", systemImage: editMode.isEditing ? "checkmark" : "arrow.up.arrow.down")
+                        }
                     }
                 }
 
@@ -354,6 +362,7 @@ private struct CustomWorkoutBuilderView: View {
                     .disabled(selectedExerciseDrafts.isEmpty)
                 }
             }
+            .environment(\.editMode, $editMode)
             .confirmationDialog(
                 "Delete custom exercise?",
                 isPresented: Binding(
@@ -388,6 +397,10 @@ private struct CustomWorkoutBuilderView: View {
 
     private func isSelected(_ exercise: Exercise) -> Bool {
         selectedExerciseDrafts.contains { $0.exerciseID == exercise.id }
+    }
+
+    private func moveSelectedExercises(from source: IndexSet, to destination: Int) {
+        selectedExerciseDrafts.move(fromOffsets: source, toOffset: destination)
     }
 
     private func createCustomExercise() {
