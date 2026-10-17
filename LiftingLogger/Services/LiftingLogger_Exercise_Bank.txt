@@ -1,4 +1,4 @@
-PushPass Exercise Bank
+LiftingLogger Exercise Bank
 
 Chest
 Barbell Bench Press

@@ -16,8 +16,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "21B938BE2FEEF7F000ABC55E"
-               BuildableName = "PushPass.app"
-               BlueprintName = "PushPass"
+               BuildableName = "LiftingLogger.app"
+               BlueprintName = "LiftingLogger"
                ReferencedContainer = "container:PushPass.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "21B938BE2FEEF7F000ABC55E"
-            BuildableName = "PushPass.app"
-            BlueprintName = "PushPass"
+            BuildableName = "LiftingLogger.app"
+            BlueprintName = "LiftingLogger"
             ReferencedContainer = "container:PushPass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "21B938BE2FEEF7F000ABC55E"
-            BuildableName = "PushPass.app"
-            BlueprintName = "PushPass"
+            BuildableName = "LiftingLogger.app"
+            BlueprintName = "LiftingLogger"
             ReferencedContainer = "container:PushPass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

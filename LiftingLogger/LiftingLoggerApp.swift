@@ -1,6 +1,6 @@
 //
-//  PushPassApp.swift
-//  PushPass
+//  LiftingLoggerApp.swift
+//  LiftingLogger
 //
 //  Created by Max Blanksby on 6/26/26.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct PushPassApp: App {
+struct LiftingLoggerApp: App {
     @State private var environment = AppEnvironment()
 
     var body: some Scene {

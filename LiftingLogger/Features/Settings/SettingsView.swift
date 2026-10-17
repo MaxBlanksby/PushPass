@@ -20,7 +20,7 @@ struct SettingsView: View {
                 PreferencesEditor(preferences: prefs)
 
                 Section("Privacy & Safety") {
-                    Text("PushPass is a fitness tracking and productivity app, not a medical service. Exercise within your abilities and stop if you experience pain, dizziness, or discomfort.")
+                    Text("LiftingLogger is a fitness tracking and productivity app, not a medical service. Exercise within your abilities and stop if you experience pain, dizziness, or discomfort.")
                 }
             }
             .navigationTitle("Settings")

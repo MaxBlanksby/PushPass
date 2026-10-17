@@ -10,7 +10,7 @@ import ManagedSettings
 
 @MainActor
 enum ScreenTimeSetupService {
-    private static let selectionStorageKey = "PushPass.RestrictedActivitySelection"
+    private static let selectionStorageKey = "LiftingLogger.RestrictedActivitySelection"
 
     static func refreshDashboard(_ dashboard: DashboardState) {
         #if canImport(FamilyControls)
@@ -144,7 +144,7 @@ enum ScreenTimeSetupService {
         if lowercasedDescription.contains("helper application") ||
             lowercasedDescription.contains("couldn’t communicate") ||
             lowercasedDescription.contains("couldn't communicate") {
-            return "PushPass could not reach Apple’s Screen Time helper. In Xcode, add the Family Controls capability and App Groups capability to the PushPass target, set the app group to \(AppConstants.ScreenTime.appGroupIdentifier), then rebuild on your iPhone. If this is already enabled, restart the phone and try again."
+            return "LiftingLogger could not reach Apple’s Screen Time helper. In Xcode, add the Family Controls capability and App Groups capability to the LiftingLogger target, set the app group to \(AppConstants.ScreenTime.appGroupIdentifier), then rebuild on your iPhone. If this is already enabled, restart the phone and try again."
         }
 
         return description

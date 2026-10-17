@@ -2,7 +2,7 @@ import Foundation
 import SwiftUI
 
 enum AppConstants {
-    static let appName = "PushPass"
+    static let appName = "LiftingLogger"
     static let tagline = "Plan, log, and track your workouts."
 
     enum Rewards {
@@ -13,10 +13,10 @@ enum AppConstants {
     }
 
     enum ScreenTime {
-        static let appGroupIdentifier = "group.PP.PushPass"
-        static let managedSettingsStoreName = "PushPassRestrictions"
-        static let deviceActivityName = "PushPassDailyActivity"
-        static let dailyAllowanceEventName = "PushPassDailyAllowanceReached"
+        static let appGroupIdentifier = "group.PP.LiftingLogger"
+        static let managedSettingsStoreName = "LiftingLoggerRestrictions"
+        static let deviceActivityName = "LiftingLoggerDailyActivity"
+        static let dailyAllowanceEventName = "LiftingLoggerDailyAllowanceReached"
     }
 }
 

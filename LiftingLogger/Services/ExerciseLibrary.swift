@@ -63,7 +63,7 @@ enum ExerciseLibrary {
             return jsonSeeds
         }
 
-        guard let url = Bundle.main.url(forResource: "PushPass_Exercise_Bank", withExtension: "txt"),
+        guard let url = Bundle.main.url(forResource: "LiftingLogger_Exercise_Bank", withExtension: "txt"),
               let text = try? String(contentsOf: url, encoding: .utf8) else {
             return fallbackExerciseSeeds
         }
@@ -72,7 +72,7 @@ enum ExerciseLibrary {
     }
 
     private static var jsonExerciseSeeds: [ExerciseSeed]? {
-        guard let url = Bundle.main.url(forResource: "PushPass_Exercise_Library", withExtension: "json"),
+        guard let url = Bundle.main.url(forResource: "LiftingLogger_Exercise_Library", withExtension: "json"),
               let data = try? Data(contentsOf: url),
               let entries = try? JSONDecoder().decode([ExerciseLibraryEntry].self, from: data) else {
             return nil
@@ -204,7 +204,7 @@ enum ExerciseLibrary {
 
         for rawLine in text.components(separatedBy: .newlines) {
             let line = rawLine.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !line.isEmpty, line != "PushPass Exercise Bank" else { continue }
+            guard !line.isEmpty, line != "LiftingLogger Exercise Bank" else { continue }
 
             if let muscleGroup = sectionMuscleGroups[line] {
                 currentMuscleGroup = muscleGroup

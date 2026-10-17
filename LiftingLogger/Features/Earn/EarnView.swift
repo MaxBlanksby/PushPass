@@ -115,7 +115,7 @@ struct EarnView: View {
                         title: "Start Setup",
                         details: [
                             "Tap Set Up Time Limits below.",
-                            "PushPass will ask iOS for Screen Time permission so it can shield the apps you choose."
+                            "LiftingLogger will ask iOS for Screen Time permission so it can shield the apps you choose."
                         ]
                     )
 
@@ -124,7 +124,7 @@ struct EarnView: View {
                         title: "Approve Permission",
                         details: [
                             "When the Apple Screen Time prompt appears, choose Allow.",
-                            "If permission is denied, open Settings later and enable Screen Time access for PushPass."
+                            "If permission is denied, open Settings later and enable Screen Time access for LiftingLogger."
                         ]
                     )
 
@@ -133,7 +133,7 @@ struct EarnView: View {
                         title: "Pick Apps to Limit",
                         details: [
                             "Choose the apps, categories, or websites that should stay locked until you earn minutes.",
-                            "Select only the apps you want PushPass to control, then tap Done."
+                            "Select only the apps you want LiftingLogger to control, then tap Done."
                         ]
                     )
 
@@ -151,7 +151,7 @@ struct EarnView: View {
                         title: "Redeem Banked Time",
                         details: [
                             "Choose Use 5 minutes, Use 10 minutes, or Use 15 minutes when you want access.",
-                            "PushPass debits that time from your bank, unlocks selected apps, and shields them again when the active session ends."
+                            "LiftingLogger debits that time from your bank, unlocks selected apps, and shields them again when the active session ends."
                         ]
                     )
 
@@ -174,7 +174,7 @@ struct EarnView: View {
                 } header: {
                     Text("Setup")
                 } footer: {
-                    Text("Screen Time setup must be completed on a real iPhone with Screen Time available. PushPass can only extend access for apps or categories selected during setup.")
+                    Text("Screen Time setup must be completed on a real iPhone with Screen Time available. LiftingLogger can only extend access for apps or categories selected during setup.")
                 }
 
                 Section("Previous Logs") {

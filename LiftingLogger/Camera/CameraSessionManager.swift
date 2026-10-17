@@ -9,7 +9,7 @@ final class CameraSessionManager: NSObject {
     var onError: ((String) -> Void)?
 
     private let output = AVCaptureVideoDataOutput()
-    private let queue = DispatchQueue(label: "PushPass.CameraSession")
+    private let queue = DispatchQueue(label: "LiftingLogger.CameraSession")
     private var isConfigured = false
 
     func requestAccessAndStart() {
