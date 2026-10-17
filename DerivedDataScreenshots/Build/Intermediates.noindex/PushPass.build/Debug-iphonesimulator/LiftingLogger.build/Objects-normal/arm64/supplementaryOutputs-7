@@ -1,0 +1,23 @@
+{
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/Camera/BodyPose.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPose.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPose.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPose.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPose.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPose.swiftdeps"
+  },
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/Camera/BodyPoseDetector.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPoseDetector.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPoseDetector.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPoseDetector.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPoseDetector.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/BodyPoseDetector.swiftdeps"
+  },
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/Camera/CameraPreviewView.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/CameraPreviewView.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/CameraPreviewView.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/CameraPreviewView.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/CameraPreviewView.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/CameraPreviewView.swiftdeps"
+  }
+}

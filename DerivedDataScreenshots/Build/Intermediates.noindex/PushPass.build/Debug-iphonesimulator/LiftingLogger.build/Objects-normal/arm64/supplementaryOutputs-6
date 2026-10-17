@@ -1,0 +1,23 @@
+{
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/App/AppConstants.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppConstants.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppConstants.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppConstants.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppConstants.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppConstants.swiftdeps"
+  },
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/App/AppEnvironment.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppEnvironment.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppEnvironment.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppEnvironment.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppEnvironment.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/AppEnvironment.swiftdeps"
+  },
+  "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/LiftingLogger/App/RootView.swift" : {
+    "const-values" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/RootView.swiftconstvalues",
+    "dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/RootView.d",
+    "diagnostics" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/RootView.dia",
+    "object" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/RootView.o",
+    "swift-dependencies" : "/Users/maxblanksby/Desktop/Code Projects/LiftingLogger/DerivedDataScreenshots/Build/Intermediates.noindex/PushPass.build/Debug-iphonesimulator/LiftingLogger.build/Objects-normal/arm64/RootView.swiftdeps"
+  }
+}

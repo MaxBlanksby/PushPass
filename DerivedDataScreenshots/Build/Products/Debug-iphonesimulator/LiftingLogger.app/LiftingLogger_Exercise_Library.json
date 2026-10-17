@@ -1,0 +1,2232 @@
+[
+  {
+    "category": "Chest",
+    "name": "Barbell Bench Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Barbell, bench, rack",
+    "exercise_type": "Compound",
+    "setup": "Lie on a flat bench with eyes under the bar. Plant feet firmly. Grip slightly wider than shoulder width and unrack with straight wrists.",
+    "form_cues": "Pull shoulder blades down and back. Keep a small natural arch. Lower the bar to the lower chest. Keep forearms near vertical. Press up and slightly back without bouncing."
+  },
+  {
+    "category": "Chest",
+    "name": "Dumbbell Bench Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Dumbbells, bench",
+    "exercise_type": "Compound",
+    "setup": "Sit with dumbbells on thighs, then kick them into position as you lie back.",
+    "form_cues": "Keep shoulder blades retracted. Lower until elbows are slightly below the torso if comfortable. Keep wrists stacked over elbows. Press without clanking the dumbbells together."
+  },
+  {
+    "category": "Chest",
+    "name": "Incline Barbell Bench Press",
+    "primary_muscles": "Upper chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Barbell, incline bench, rack",
+    "exercise_type": "Compound",
+    "setup": "Set bench to roughly 20 to 35 degrees. Position eyes under the bar and plant feet.",
+    "form_cues": "Keep shoulder blades pinned back. Lower bar to upper chest. Avoid flaring elbows straight out. Press up while maintaining contact with the bench."
+  },
+  {
+    "category": "Chest",
+    "name": "Incline Dumbbell Press",
+    "primary_muscles": "Upper chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Dumbbells, incline bench",
+    "exercise_type": "Compound",
+    "setup": "Set bench to roughly 20 to 35 degrees. Bring dumbbells to shoulder level.",
+    "form_cues": "Use a controlled descent. Keep elbows slightly tucked. Press the dumbbells up over the upper chest rather than toward the face."
+  },
+  {
+    "category": "Chest",
+    "name": "Decline Barbell Bench Press",
+    "primary_muscles": "Lower chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Barbell, decline bench",
+    "exercise_type": "Compound",
+    "setup": "Secure legs in the decline bench and position the bar over the lower chest.",
+    "form_cues": "Keep shoulders retracted. Lower under control to the lower chest or upper abdomen. Press without bouncing."
+  },
+  {
+    "category": "Chest",
+    "name": "Decline Dumbbell Press",
+    "primary_muscles": "Lower chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Dumbbells, decline bench",
+    "exercise_type": "Compound",
+    "setup": "Secure legs before bringing dumbbells into position.",
+    "form_cues": "Lower with control and keep wrists stacked. Press upward while keeping the ribcage controlled."
+  },
+  {
+    "category": "Chest",
+    "name": "Machine Chest Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Chest press machine",
+    "exercise_type": "Compound",
+    "setup": "Adjust seat so handles line up around mid chest. Set the back pad so shoulder blades remain supported.",
+    "form_cues": "Keep wrists neutral. Press smoothly without locking out aggressively. Do not let shoulders roll forward at the bottom."
+  },
+  {
+    "category": "Chest",
+    "name": "Smith Machine Bench Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Smith machine, bench",
+    "exercise_type": "Compound",
+    "setup": "Position bench so the fixed bar path reaches the lower to mid chest.",
+    "form_cues": "Retract shoulders and keep feet planted. Lower with control. Avoid forcing an uncomfortable bar path."
+  },
+  {
+    "category": "Chest",
+    "name": "Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Start in a high plank with hands just outside shoulder width.",
+    "form_cues": "Keep body in a straight line. Lower chest between the hands. Keep elbows about 30 to 60 degrees from the torso. Push the floor away."
+  },
+  {
+    "category": "Chest",
+    "name": "Wide Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts, triceps",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Place hands wider than normal push-up width.",
+    "form_cues": "Keep ribs and hips aligned. Do not let elbows flare excessively. Lower with control and press through the palms."
+  },
+  {
+    "category": "Chest",
+    "name": "Diamond Push-Up",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "Chest, front delts",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Place hands close together under the sternum, forming a narrow base.",
+    "form_cues": "Keep elbows close to the torso. Maintain a rigid plank. Stop if wrist discomfort develops."
+  },
+  {
+    "category": "Chest",
+    "name": "Decline Push-Up",
+    "primary_muscles": "Upper chest",
+    "secondary_muscles": "Triceps, front delts, core",
+    "equipment": "Bodyweight, bench or box",
+    "exercise_type": "Compound",
+    "setup": "Place feet on an elevated stable surface and hands on the floor.",
+    "form_cues": "Keep hips from sagging. Lower chest toward the floor. Maintain a neutral neck and press evenly."
+  },
+  {
+    "category": "Chest",
+    "name": "Incline Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Bodyweight, bench or box",
+    "exercise_type": "Compound",
+    "setup": "Place hands on a stable elevated surface and feet on the floor.",
+    "form_cues": "Maintain a straight body line. Lower chest toward the edge of the surface and press away."
+  },
+  {
+    "category": "Chest",
+    "name": "Weighted Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts, core",
+    "equipment": "Bodyweight, weight plate or vest",
+    "exercise_type": "Compound",
+    "setup": "Use a snug weight vest or have a partner place a plate high on the back, not the lower spine.",
+    "form_cues": "Use standard push-up mechanics. Keep the added load secure and avoid excessive lumbar extension."
+  },
+  {
+    "category": "Chest",
+    "name": "Archer Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Use a very wide hand position. Shift most of your bodyweight toward one arm while the other arm stays more extended.",
+    "form_cues": "Keep the working elbow tracking naturally. Move side to side under control. Do not twist the hips."
+  },
+  {
+    "category": "Chest",
+    "name": "Chest Dip",
+    "primary_muscles": "Lower chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Dip bars",
+    "exercise_type": "Compound",
+    "setup": "Support yourself on parallel bars and lean the torso slightly forward.",
+    "form_cues": "Lower only as far as the shoulders tolerate. Keep shoulders down away from ears. Press through the bars without swinging."
+  },
+  {
+    "category": "Chest",
+    "name": "Pec Deck Fly",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Pec deck machine",
+    "exercise_type": "Isolation",
+    "setup": "Adjust seat so elbows or handles align with mid chest.",
+    "form_cues": "Keep a slight elbow bend. Bring arms together by squeezing the chest. Do not let shoulders roll forward aggressively."
+  },
+  {
+    "category": "Chest",
+    "name": "Cable Fly",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Cable machine, handles",
+    "exercise_type": "Isolation",
+    "setup": "Set pulleys around chest height and step forward into a split stance.",
+    "form_cues": "Keep elbows softly bent. Bring hands together in an arc. Keep shoulders down and control the stretch."
+  },
+  {
+    "category": "Chest",
+    "name": "Low-to-High Cable Fly",
+    "primary_muscles": "Upper chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Cable machine, handles",
+    "exercise_type": "Isolation",
+    "setup": "Set pulleys low and stand slightly forward of the stacks.",
+    "form_cues": "Sweep hands upward and inward toward upper chest or chin level. Keep ribs down and avoid shrugging."
+  },
+  {
+    "category": "Chest",
+    "name": "High-to-Low Cable Fly",
+    "primary_muscles": "Lower chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Cable machine, handles",
+    "exercise_type": "Isolation",
+    "setup": "Set pulleys above shoulder height.",
+    "form_cues": "Sweep hands down and inward toward the lower chest or upper abdomen. Keep elbows softly bent and torso stable."
+  },
+  {
+    "category": "Chest",
+    "name": "Resistance Band Chest Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Resistance band, anchor",
+    "exercise_type": "Compound",
+    "setup": "Anchor band securely behind you at chest height.",
+    "form_cues": "Press straight forward while keeping ribs stacked. Return slowly and keep the band under control."
+  },
+  {
+    "category": "Chest",
+    "name": "Resistance Band Fly",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Resistance band, anchor",
+    "exercise_type": "Isolation",
+    "setup": "Anchor the band behind you around chest height.",
+    "form_cues": "With soft elbows, bring arms together in front of the chest. Do not over-stretch the shoulders behind the body."
+  },
+  {
+    "category": "Chest",
+    "name": "Svend Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts, triceps",
+    "equipment": "Weight plate or two plates",
+    "exercise_type": "Isolation",
+    "setup": "Hold one or two plates squeezed together in front of the chest.",
+    "form_cues": "Maintain inward pressure on the plates while pressing forward. Keep shoulders down and ribs controlled."
+  },
+  {
+    "category": "Chest",
+    "name": "Dumbbell Pullover",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Lats, serratus, triceps",
+    "equipment": "Dumbbell, bench",
+    "exercise_type": "Compound",
+    "setup": "Lie across or along a bench and hold one dumbbell above the chest with both hands.",
+    "form_cues": "Keep elbows slightly bent. Lower behind the head only as far as shoulder mobility allows. Pull back over the chest without overextending the spine."
+  },
+  {
+    "category": "Back",
+    "name": "Conventional Deadlift",
+    "primary_muscles": "Glutes, hamstrings, spinal erectors",
+    "secondary_muscles": "Lats, traps, quads, forearms",
+    "equipment": "Barbell, plates",
+    "exercise_type": "Compound",
+    "setup": "Stand with midfoot under the bar. Grip just outside the legs. Bring shins to the bar while keeping the bar over midfoot.",
+    "form_cues": "Brace hard. Keep the bar close. Push the floor away and stand tall. Do not yank the bar or overlean backward at lockout."
+  },
+  {
+    "category": "Back",
+    "name": "Sumo Deadlift",
+    "primary_muscles": "Glutes, adductors, hamstrings",
+    "secondary_muscles": "Quads, spinal erectors, lats, forearms",
+    "equipment": "Barbell, plates",
+    "exercise_type": "Compound",
+    "setup": "Take a wide stance with toes turned out. Grip the bar inside the knees.",
+    "form_cues": "Brace and wedge hips close to the bar. Push knees out in line with toes. Keep the bar close and lock out by standing tall."
+  },
+  {
+    "category": "Back",
+    "name": "Romanian Deadlift",
+    "primary_muscles": "Hamstrings, glutes",
+    "secondary_muscles": "Spinal erectors, lats, forearms",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Start standing with the bar at hip height.",
+    "form_cues": "Push hips back with soft knees. Keep the bar close to the legs. Stop when hamstrings are deeply stretched without rounding the back. Drive hips forward to stand."
+  },
+  {
+    "category": "Back",
+    "name": "Barbell Bent-Over Row",
+    "primary_muscles": "Lats, mid back",
+    "secondary_muscles": "Rear delts, biceps, spinal erectors",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Hinge at the hips until torso is roughly 30 to 60 degrees from horizontal.",
+    "form_cues": "Brace the trunk. Row bar toward lower ribs or upper abdomen. Keep elbows controlled and avoid jerking the torso."
+  },
+  {
+    "category": "Back",
+    "name": "Pendlay Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Rear delts, biceps, spinal erectors",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Set the bar on the floor and hinge until the torso is close to parallel.",
+    "form_cues": "Brace before each rep. Pull explosively to lower chest or upper abdomen, then return the bar to the floor without bouncing."
+  },
+  {
+    "category": "Back",
+    "name": "One-Arm Dumbbell Row",
+    "primary_muscles": "Lats, mid back",
+    "secondary_muscles": "Biceps, rear delts",
+    "equipment": "Dumbbell, bench",
+    "exercise_type": "Compound",
+    "setup": "Support one hand and knee or one hand on a bench. Keep the working foot planted.",
+    "form_cues": "Row the dumbbell toward the hip. Keep shoulders square and avoid twisting the torso."
+  },
+  {
+    "category": "Back",
+    "name": "Chest-Supported Dumbbell Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Rear delts, biceps",
+    "equipment": "Dumbbells, incline bench",
+    "exercise_type": "Compound",
+    "setup": "Lie chest-down on an incline bench with dumbbells hanging beneath you.",
+    "form_cues": "Pull elbows back and slightly out based on target. Keep chest on the pad and avoid shrugging."
+  },
+  {
+    "category": "Back",
+    "name": "Seated Cable Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Biceps, rear delts",
+    "equipment": "Cable row machine",
+    "exercise_type": "Compound",
+    "setup": "Sit tall with knees slightly bent and handle attached to low cable.",
+    "form_cues": "Pull handle toward lower ribs. Keep torso mostly still. Do not over-reach by rounding the low back."
+  },
+  {
+    "category": "Back",
+    "name": "T-Bar Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Biceps, rear delts, spinal erectors",
+    "equipment": "T-bar or landmine setup",
+    "exercise_type": "Compound",
+    "setup": "Straddle the bar or use a chest-supported T-bar machine. Hinge if unsupported.",
+    "form_cues": "Row toward the chest or upper abdomen. Keep elbows controlled and spine neutral."
+  },
+  {
+    "category": "Back",
+    "name": "Landmine Row",
+    "primary_muscles": "Lats, mid back",
+    "secondary_muscles": "Biceps, rear delts",
+    "equipment": "Landmine, barbell, handle",
+    "exercise_type": "Compound",
+    "setup": "Anchor one end of a barbell. Straddle the bar and use a V-handle or grasp the bar sleeve.",
+    "form_cues": "Hinge and brace. Pull toward the lower chest. Keep the bar close and avoid excessive torso movement."
+  },
+  {
+    "category": "Back",
+    "name": "Lat Pulldown",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps, mid back",
+    "equipment": "Lat pulldown machine",
+    "exercise_type": "Compound",
+    "setup": "Adjust thigh pad snugly and grip the bar slightly wider than shoulders.",
+    "form_cues": "Pull elbows down toward the ribs. Bring bar toward upper chest. Avoid leaning far back or pulling behind the neck."
+  },
+  {
+    "category": "Back",
+    "name": "Close-Grip Lat Pulldown",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps, mid back",
+    "equipment": "Lat pulldown machine, close handle",
+    "exercise_type": "Compound",
+    "setup": "Attach a close neutral or underhand handle and secure thighs.",
+    "form_cues": "Pull handle toward upper chest while driving elbows down. Control the stretch overhead."
+  },
+  {
+    "category": "Back",
+    "name": "Single-Arm Lat Pulldown",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps",
+    "equipment": "Cable machine, single handle",
+    "exercise_type": "Compound",
+    "setup": "Use a high cable and kneel or sit so the arm starts overhead.",
+    "form_cues": "Drive elbow toward the hip. Keep torso from rotating and avoid shrugging."
+  },
+  {
+    "category": "Back",
+    "name": "Straight-Arm Pulldown",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Triceps long head, serratus",
+    "equipment": "Cable machine, rope or bar",
+    "exercise_type": "Isolation",
+    "setup": "Set cable high and stand far enough back for tension at the top.",
+    "form_cues": "Keep elbows nearly straight. Pull from overhead down toward thighs by using the lats. Avoid turning it into a triceps pressdown."
+  },
+  {
+    "category": "Back",
+    "name": "Pull-Up",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps, mid back, core",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Hang from a bar with hands slightly wider than shoulders.",
+    "form_cues": "Start by pulling shoulders down. Drive elbows toward the ribs. Bring upper chest toward the bar without swinging."
+  },
+  {
+    "category": "Back",
+    "name": "Chin-Up",
+    "primary_muscles": "Lats, biceps",
+    "secondary_muscles": "Mid back, forearms",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Use a shoulder-width underhand grip.",
+    "form_cues": "Keep ribs controlled. Pull chest upward while driving elbows down. Lower to full control."
+  },
+  {
+    "category": "Back",
+    "name": "Neutral-Grip Pull-Up",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps, forearms, mid back",
+    "equipment": "Neutral-grip pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Grip parallel handles and begin from a controlled hang.",
+    "form_cues": "Pull shoulders down and elbows toward the sides. Avoid kicking or excessive arching."
+  },
+  {
+    "category": "Back",
+    "name": "Assisted Pull-Up",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Biceps, mid back",
+    "equipment": "Assisted pull-up machine or resistance band",
+    "exercise_type": "Compound",
+    "setup": "Use a machine counterweight or a safely secured band.",
+    "form_cues": "Use the same mechanics as a normal pull-up. Avoid relying on momentum."
+  },
+  {
+    "category": "Back",
+    "name": "Inverted Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Biceps, rear delts, core",
+    "equipment": "Bar in rack or suspension trainer",
+    "exercise_type": "Compound",
+    "setup": "Set a bar around waist height and hang beneath it with body straight.",
+    "form_cues": "Pull chest to the bar while squeezing shoulder blades. Keep hips from sagging."
+  },
+  {
+    "category": "Back",
+    "name": "Face Pull",
+    "primary_muscles": "Rear delts, mid traps",
+    "secondary_muscles": "Rotator cuff, rhomboids",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Isolation",
+    "setup": "Set cable around face height and grip rope with thumbs pointing back.",
+    "form_cues": "Pull rope toward forehead while rotating hands apart. Keep shoulders down and avoid arching the low back."
+  },
+  {
+    "category": "Back",
+    "name": "Barbell Shrug",
+    "primary_muscles": "Upper traps",
+    "secondary_muscles": "Forearms",
+    "equipment": "Barbell",
+    "exercise_type": "Isolation",
+    "setup": "Hold bar at thigh level with arms straight.",
+    "form_cues": "Elevate shoulders straight up toward ears. Pause briefly. Do not roll the shoulders."
+  },
+  {
+    "category": "Back",
+    "name": "Dumbbell Shrug",
+    "primary_muscles": "Upper traps",
+    "secondary_muscles": "Forearms",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Hold dumbbells at sides with neutral grip.",
+    "form_cues": "Shrug straight upward and control the lowering phase. Avoid bending elbows."
+  },
+  {
+    "category": "Back",
+    "name": "Back Extension",
+    "primary_muscles": "Spinal erectors",
+    "secondary_muscles": "Glutes, hamstrings",
+    "equipment": "45-degree back extension bench",
+    "exercise_type": "Compound",
+    "setup": "Set pad just below the hip crease so hips can hinge freely.",
+    "form_cues": "Hinge at the hips, not through the low back. Rise until body forms a straight line. Do not hyperextend."
+  },
+  {
+    "category": "Back",
+    "name": "Reverse Hyperextension",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings, spinal erectors",
+    "equipment": "Reverse hyper machine or sturdy bench",
+    "exercise_type": "Compound",
+    "setup": "Position hips at the edge of the pad with legs hanging.",
+    "form_cues": "Raise legs by extending the hips. Stop around body alignment and avoid throwing the legs upward."
+  },
+  {
+    "category": "Back",
+    "name": "Good Morning",
+    "primary_muscles": "Hamstrings, spinal erectors",
+    "secondary_muscles": "Glutes",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Place bar securely across upper back as for a squat. Use a moderate stance.",
+    "form_cues": "Brace and push hips back with soft knees. Keep spine neutral. Return by driving hips forward."
+  },
+  {
+    "category": "Back",
+    "name": "Superman Hold",
+    "primary_muscles": "Spinal erectors",
+    "secondary_muscles": "Glutes, rear shoulders",
+    "equipment": "Bodyweight, mat",
+    "exercise_type": "Isolation",
+    "setup": "Lie face down with arms overhead or by the sides.",
+    "form_cues": "Lift chest and legs slightly while keeping neck neutral. Use a modest range and avoid forcing lumbar extension."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Barbell Overhead Press",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Side delts, triceps, upper chest",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Start with bar at upper chest, wrists stacked, and feet about hip to shoulder width.",
+    "form_cues": "Brace glutes and abs. Move head slightly back as bar passes, then bring head through at lockout. Do not lean excessively backward."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Dumbbell Shoulder Press",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Side delts, triceps",
+    "equipment": "Dumbbells, bench optional",
+    "exercise_type": "Compound",
+    "setup": "Start dumbbells around shoulder level, seated or standing.",
+    "form_cues": "Press overhead while keeping ribs down. Keep wrists over elbows and avoid excessive arching."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Arnold Press",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Side delts, triceps",
+    "equipment": "Dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Start with palms facing you and dumbbells near chin level.",
+    "form_cues": "Rotate elbows outward as you press overhead. Use a smooth path rather than forcing rotation."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Machine Shoulder Press",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Side delts, triceps",
+    "equipment": "Shoulder press machine",
+    "exercise_type": "Compound",
+    "setup": "Adjust seat so handles begin near shoulder height.",
+    "form_cues": "Press overhead without shrugging excessively. Keep back against pad and control the return."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Landmine Press",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Upper chest, triceps",
+    "equipment": "Landmine, barbell",
+    "exercise_type": "Compound",
+    "setup": "Hold the end of the bar at shoulder height with one or both hands.",
+    "form_cues": "Press up and forward along the bar path. Keep ribs stacked and avoid twisting."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Dumbbell Lateral Raise",
+    "primary_muscles": "Side delts",
+    "secondary_muscles": "Upper traps",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Stand tall with dumbbells at sides and elbows softly bent.",
+    "form_cues": "Raise arms out to the sides until around shoulder height. Lead with elbows. Avoid swinging or shrugging."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Cable Lateral Raise",
+    "primary_muscles": "Side delts",
+    "secondary_muscles": "Upper traps",
+    "equipment": "Cable machine, single handle",
+    "exercise_type": "Isolation",
+    "setup": "Set pulley low. Stand side-on or slightly in front of the cable.",
+    "form_cues": "Raise arm out to the side with a soft elbow. Keep torso still and control the return."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Machine Lateral Raise",
+    "primary_muscles": "Side delts",
+    "secondary_muscles": "Upper traps",
+    "equipment": "Lateral raise machine",
+    "exercise_type": "Isolation",
+    "setup": "Adjust seat so machine pivot aligns with shoulder joint.",
+    "form_cues": "Drive elbows outward into pads. Stop near shoulder height and avoid shrugging."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Front Raise",
+    "primary_muscles": "Front delts",
+    "secondary_muscles": "Upper chest",
+    "equipment": "Dumbbells or plate",
+    "exercise_type": "Isolation",
+    "setup": "Stand tall with weight in front of thighs.",
+    "form_cues": "Raise to about shoulder height while keeping ribs down. Avoid using momentum."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Rear Delt Fly",
+    "primary_muscles": "Rear delts",
+    "secondary_muscles": "Rhomboids, mid traps",
+    "equipment": "Dumbbells, bench optional",
+    "exercise_type": "Isolation",
+    "setup": "Hinge forward or lie chest-supported on an incline bench.",
+    "form_cues": "Sweep arms outward with soft elbows. Focus on moving from the shoulders and avoid shrugging."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Reverse Pec Deck",
+    "primary_muscles": "Rear delts",
+    "secondary_muscles": "Rhomboids, mid traps",
+    "equipment": "Reverse pec deck machine",
+    "exercise_type": "Isolation",
+    "setup": "Adjust seat so handles line up with shoulders.",
+    "form_cues": "Pull arms apart while keeping chest against pad. Avoid excessive low-back arch."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Cable Rear Delt Fly",
+    "primary_muscles": "Rear delts",
+    "secondary_muscles": "Rhomboids, mid traps",
+    "equipment": "Cable machine",
+    "exercise_type": "Isolation",
+    "setup": "Cross cable handles in front of you at shoulder height.",
+    "form_cues": "Pull arms outward with soft elbows. Keep shoulders down and torso still."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Upright Row",
+    "primary_muscles": "Side delts, upper traps",
+    "secondary_muscles": "Biceps",
+    "equipment": "Barbell, dumbbells, cable",
+    "exercise_type": "Compound",
+    "setup": "Use a grip around shoulder width or slightly wider.",
+    "form_cues": "Pull elbows upward only to a comfortable height. Do not force elbows far above shoulders if it causes impingement."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Dumbbell Y-Raise",
+    "primary_muscles": "Lower traps, front delts",
+    "secondary_muscles": "Serratus, rotator cuff",
+    "equipment": "Light dumbbells, incline bench optional",
+    "exercise_type": "Isolation",
+    "setup": "Use very light weights. Stand hinged or lie chest-down on an incline bench.",
+    "form_cues": "Raise arms diagonally into a Y. Keep thumbs up and shoulders away from ears."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Scaption Raise",
+    "primary_muscles": "Side delts",
+    "secondary_muscles": "Front delts, rotator cuff",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Hold light dumbbells with thumbs slightly up.",
+    "form_cues": "Raise arms about 30 degrees forward from directly out to the sides. Stop near shoulder height."
+  },
+  {
+    "category": "Shoulders",
+    "name": "External Rotation Cable",
+    "primary_muscles": "Rotator cuff",
+    "secondary_muscles": "Rear delts",
+    "equipment": "Cable machine, handle",
+    "exercise_type": "Isolation",
+    "setup": "Set cable around elbow height. Keep elbow bent 90 degrees and pinned to side.",
+    "form_cues": "Rotate forearm outward without letting elbow drift. Use light resistance and controlled motion."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Band External Rotation",
+    "primary_muscles": "Rotator cuff",
+    "secondary_muscles": "Rear delts",
+    "equipment": "Resistance band",
+    "exercise_type": "Isolation",
+    "setup": "Anchor band at elbow height. Bend elbow to 90 degrees and keep it close to ribs.",
+    "form_cues": "Rotate hand outward while upper arm stays still. Move slowly."
+  },
+  {
+    "category": "Shoulders",
+    "name": "Wall Slide",
+    "primary_muscles": "Serratus, lower traps",
+    "secondary_muscles": "Rotator cuff",
+    "equipment": "Wall",
+    "exercise_type": "Isolation",
+    "setup": "Stand with back or forearms against a wall.",
+    "form_cues": "Slide arms upward while keeping ribs controlled. Reach slightly at the top without shrugging."
+  },
+  {
+    "category": "Biceps",
+    "name": "Barbell Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis, forearms",
+    "equipment": "Barbell",
+    "exercise_type": "Isolation",
+    "setup": "Stand tall with underhand grip around shoulder width.",
+    "form_cues": "Keep elbows near sides. Curl without swinging the torso. Lower fully under control."
+  },
+  {
+    "category": "Biceps",
+    "name": "EZ-Bar Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis, forearms",
+    "equipment": "EZ curl bar",
+    "exercise_type": "Isolation",
+    "setup": "Grip angled portions of the bar comfortably.",
+    "form_cues": "Keep wrists neutral and elbows mostly stationary. Avoid leaning back."
+  },
+  {
+    "category": "Biceps",
+    "name": "Dumbbell Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis, forearms",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Hold dumbbells at sides with palms forward or rotate into supination.",
+    "form_cues": "Curl while keeping upper arms still. Squeeze at the top and lower slowly."
+  },
+  {
+    "category": "Biceps",
+    "name": "Alternating Dumbbell Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis, forearms",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Hold one dumbbell in each hand.",
+    "form_cues": "Curl one side at a time without rotating the torso. Fully control each lowering phase."
+  },
+  {
+    "category": "Biceps",
+    "name": "Hammer Curl",
+    "primary_muscles": "Brachialis, brachioradialis",
+    "secondary_muscles": "Biceps",
+    "equipment": "Dumbbells",
+    "exercise_type": "Isolation",
+    "setup": "Hold dumbbells with palms facing inward.",
+    "form_cues": "Curl while keeping neutral grip. Keep elbows near sides and avoid swinging."
+  },
+  {
+    "category": "Biceps",
+    "name": "Incline Dumbbell Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis",
+    "equipment": "Dumbbells, incline bench",
+    "exercise_type": "Isolation",
+    "setup": "Set bench around 45 to 60 degrees and let arms hang behind the torso.",
+    "form_cues": "Keep shoulders back. Curl without moving elbows forward excessively."
+  },
+  {
+    "category": "Biceps",
+    "name": "Preacher Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis",
+    "equipment": "Preacher bench, EZ bar or dumbbell",
+    "exercise_type": "Isolation",
+    "setup": "Set upper arms fully on the preacher pad.",
+    "form_cues": "Curl without lifting upper arms off the pad. Do not slam into full elbow extension at the bottom."
+  },
+  {
+    "category": "Biceps",
+    "name": "Cable Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis, forearms",
+    "equipment": "Cable machine, bar or handles",
+    "exercise_type": "Isolation",
+    "setup": "Set pulley low and stand tall.",
+    "form_cues": "Keep elbows close to sides. Curl smoothly and resist the cable on the way down."
+  },
+  {
+    "category": "Biceps",
+    "name": "Bayesian Cable Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis",
+    "equipment": "Cable machine, single handle",
+    "exercise_type": "Isolation",
+    "setup": "Set cable low and stand facing away so the arm starts slightly behind the body.",
+    "form_cues": "Keep shoulder extended and curl without letting elbow drift forward."
+  },
+  {
+    "category": "Biceps",
+    "name": "Spider Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis",
+    "equipment": "Dumbbells or EZ bar, incline bench",
+    "exercise_type": "Isolation",
+    "setup": "Lie chest-down on an incline bench with arms hanging.",
+    "form_cues": "Curl while upper arms stay pointed down. Avoid lifting elbows toward the ceiling."
+  },
+  {
+    "category": "Biceps",
+    "name": "Concentration Curl",
+    "primary_muscles": "Biceps",
+    "secondary_muscles": "Brachialis",
+    "equipment": "Dumbbell, bench",
+    "exercise_type": "Isolation",
+    "setup": "Sit and brace the upper arm against the inside of the thigh.",
+    "form_cues": "Curl slowly and squeeze at the top. Keep the upper arm fixed."
+  },
+  {
+    "category": "Biceps",
+    "name": "Reverse Curl",
+    "primary_muscles": "Brachioradialis",
+    "secondary_muscles": "Biceps, forearms",
+    "equipment": "Barbell or EZ bar",
+    "exercise_type": "Isolation",
+    "setup": "Use an overhand grip with wrists straight.",
+    "form_cues": "Curl without letting wrists collapse. Keep elbows near sides."
+  },
+  {
+    "category": "Triceps",
+    "name": "Cable Triceps Pressdown",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "None",
+    "equipment": "Cable machine, bar or rope",
+    "exercise_type": "Isolation",
+    "setup": "Set pulley high and stand close to the stack.",
+    "form_cues": "Pin elbows near sides. Extend forearms downward. Avoid leaning bodyweight onto the handle."
+  },
+  {
+    "category": "Triceps",
+    "name": "Rope Pressdown",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "None",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Isolation",
+    "setup": "Attach rope to high cable.",
+    "form_cues": "Extend elbows fully while separating rope ends slightly. Keep shoulders stable."
+  },
+  {
+    "category": "Triceps",
+    "name": "Overhead Cable Triceps Extension",
+    "primary_muscles": "Triceps long head",
+    "secondary_muscles": "Other triceps heads",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Isolation",
+    "setup": "Face away from a cable set low or mid height and bring rope behind head.",
+    "form_cues": "Keep elbows pointing forward. Extend arms without arching the low back."
+  },
+  {
+    "category": "Triceps",
+    "name": "Dumbbell Overhead Triceps Extension",
+    "primary_muscles": "Triceps long head",
+    "secondary_muscles": "Other triceps heads",
+    "equipment": "Dumbbell",
+    "exercise_type": "Isolation",
+    "setup": "Hold one dumbbell overhead with both hands or one hand.",
+    "form_cues": "Keep elbows relatively narrow. Lower behind head under control and extend without flaring excessively."
+  },
+  {
+    "category": "Triceps",
+    "name": "Skull Crusher",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "None",
+    "equipment": "EZ bar or barbell, bench",
+    "exercise_type": "Isolation",
+    "setup": "Lie on bench with arms extended above shoulders.",
+    "form_cues": "Bend elbows to lower bar toward forehead or slightly behind head. Keep upper arms relatively fixed."
+  },
+  {
+    "category": "Triceps",
+    "name": "Close-Grip Bench Press",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "Chest, front delts",
+    "equipment": "Barbell, bench, rack",
+    "exercise_type": "Compound",
+    "setup": "Use a grip around shoulder width rather than extremely narrow.",
+    "form_cues": "Keep wrists stacked. Lower bar to lower chest with elbows tucked moderately. Press without bouncing."
+  },
+  {
+    "category": "Triceps",
+    "name": "Bench Dip",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "Chest, front delts",
+    "equipment": "Bench",
+    "exercise_type": "Compound",
+    "setup": "Place hands on a stable bench behind you and feet on the floor.",
+    "form_cues": "Keep shoulders down and lower only as far as comfortable. Avoid sinking deeply if shoulders feel stressed."
+  },
+  {
+    "category": "Triceps",
+    "name": "Parallel-Bar Dip",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "Chest, front delts",
+    "equipment": "Dip bars",
+    "exercise_type": "Compound",
+    "setup": "Keep torso more upright than a chest-focused dip.",
+    "form_cues": "Lower with elbows tracking back. Press to lockout while keeping shoulders controlled."
+  },
+  {
+    "category": "Triceps",
+    "name": "Triceps Kickback",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "None",
+    "equipment": "Dumbbell",
+    "exercise_type": "Isolation",
+    "setup": "Hinge forward and keep upper arm parallel or close to parallel with torso.",
+    "form_cues": "Extend elbow until arm is straight. Keep upper arm stationary."
+  },
+  {
+    "category": "Triceps",
+    "name": "Single-Arm Cable Pressdown",
+    "primary_muscles": "Triceps",
+    "secondary_muscles": "None",
+    "equipment": "Cable machine, single handle",
+    "exercise_type": "Isolation",
+    "setup": "Set high cable and stand square.",
+    "form_cues": "Keep elbow by side. Extend smoothly and avoid rotating the torso."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Wrist Curl",
+    "primary_muscles": "Wrist flexors",
+    "secondary_muscles": "Forearm flexors",
+    "equipment": "Dumbbells or barbell",
+    "exercise_type": "Isolation",
+    "setup": "Rest forearms on thighs or bench with palms up and wrists hanging off edge.",
+    "form_cues": "Curl only at the wrists. Use controlled range and avoid bouncing."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Reverse Wrist Curl",
+    "primary_muscles": "Wrist extensors",
+    "secondary_muscles": "Forearm extensors",
+    "equipment": "Dumbbells or barbell",
+    "exercise_type": "Isolation",
+    "setup": "Rest forearms supported with palms down.",
+    "form_cues": "Extend wrists upward through a comfortable range. Use light weight."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Farmer Carry",
+    "primary_muscles": "Grip, forearms",
+    "secondary_muscles": "Traps, core, glutes",
+    "equipment": "Heavy dumbbells or farmer handles",
+    "exercise_type": "Compound",
+    "setup": "Pick up weights with a safe deadlift pattern and stand tall.",
+    "form_cues": "Walk with short controlled steps. Keep ribs stacked and shoulders down. Do not let weights swing."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Suitcase Carry",
+    "primary_muscles": "Grip, obliques",
+    "secondary_muscles": "Forearms, traps, core",
+    "equipment": "Single dumbbell or kettlebell",
+    "exercise_type": "Compound",
+    "setup": "Hold one heavy weight at your side.",
+    "form_cues": "Walk without leaning toward or away from the weight. Keep torso upright."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Plate Pinch Hold",
+    "primary_muscles": "Grip, fingers",
+    "secondary_muscles": "Forearms",
+    "equipment": "Weight plates",
+    "exercise_type": "Isolation",
+    "setup": "Pinch smooth-sided plates together between fingers and thumb.",
+    "form_cues": "Stand tall and hold securely. Keep plates away from feet in case grip fails."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Dead Hang",
+    "primary_muscles": "Grip",
+    "secondary_muscles": "Lats, shoulders",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Isolation",
+    "setup": "Hang from a secure bar with hands around shoulder width.",
+    "form_cues": "Maintain active shoulder position if passive hanging is uncomfortable. Avoid swinging."
+  },
+  {
+    "category": "Forearms & Grip",
+    "name": "Towel Hang",
+    "primary_muscles": "Grip",
+    "secondary_muscles": "Forearms, lats",
+    "equipment": "Pull-up bar, towel",
+    "exercise_type": "Isolation",
+    "setup": "Loop a strong towel over a pull-up bar and grip each end.",
+    "form_cues": "Hang under control. Keep towel secure and stop before grip fails unexpectedly."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Back Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Adductors, spinal erectors, core",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Set bar across upper traps or rear delts, brace, and step out into a stable stance.",
+    "form_cues": "Sit down between the hips while knees track over toes. Keep whole foot planted. Maintain a braced torso and drive up through midfoot."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Front Squat",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Glutes, upper back, core",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Rack bar on front delts using clean grip or cross-arm grip.",
+    "form_cues": "Keep elbows high and torso upright. Let knees travel forward naturally. Keep heels planted."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Goblet Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Core, adductors",
+    "equipment": "Dumbbell or kettlebell",
+    "exercise_type": "Compound",
+    "setup": "Hold weight close to chest with both hands.",
+    "form_cues": "Sit down between knees. Keep chest tall, feet planted, and knees tracking with toes."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Hack Squat",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Glutes, adductors",
+    "equipment": "Hack squat machine",
+    "exercise_type": "Compound",
+    "setup": "Place shoulders and back against pads and feet on platform.",
+    "form_cues": "Lower under control with knees tracking over toes. Keep hips and back supported. Do not lock knees aggressively."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Leg Press",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Glutes, adductors",
+    "equipment": "Leg press machine",
+    "exercise_type": "Compound",
+    "setup": "Set feet about shoulder width on platform and adjust seat so lower back stays against pad.",
+    "form_cues": "Lower until hips remain firmly supported. Press through full foot. Avoid locking knees hard."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Bulgarian Split Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Adductors, core",
+    "equipment": "Bench, dumbbells optional",
+    "exercise_type": "Compound",
+    "setup": "Place rear foot on a bench and front foot far enough forward for balance.",
+    "form_cues": "Drop the rear knee toward the floor. Keep front foot planted. Allow front knee to travel naturally over toes."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Split Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Adductors, core",
+    "equipment": "Bodyweight or dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Take a staggered stance with both feet remaining planted.",
+    "form_cues": "Lower straight down. Keep front foot flat and torso controlled. Push through the front leg."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Walking Lunge",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Hamstrings, calves, core",
+    "equipment": "Bodyweight or dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Stand tall with space to move forward.",
+    "form_cues": "Step far enough to stay balanced. Lower rear knee toward floor. Push through the lead foot and continue forward."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Reverse Lunge",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Hamstrings, core",
+    "equipment": "Bodyweight or dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Stand tall and step one foot backward.",
+    "form_cues": "Lower until both knees bend comfortably. Keep most pressure through the front foot and return to standing."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Step-Up",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Hamstrings, calves",
+    "equipment": "Box or bench, dumbbells optional",
+    "exercise_type": "Compound",
+    "setup": "Use a stable box around knee height or lower.",
+    "form_cues": "Plant entire working foot on the box. Drive through that leg rather than pushing strongly off the trailing foot."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Leg Extension",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "None",
+    "equipment": "Leg extension machine",
+    "exercise_type": "Isolation",
+    "setup": "Align machine knee pivot with your knee joint and pad above ankles.",
+    "form_cues": "Extend knees smoothly. Squeeze quads at top. Lower under control without slamming the stack."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Sissy Squat",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Core",
+    "equipment": "Bodyweight or support",
+    "exercise_type": "Isolation",
+    "setup": "Hold a stable support if needed and rise slightly onto the balls of the feet.",
+    "form_cues": "Let knees travel forward as torso leans back in a straight line. Use a small range at first and stop if knees feel painful."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Spanish Squat",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Glutes",
+    "equipment": "Heavy resistance band or strap",
+    "exercise_type": "Compound",
+    "setup": "Anchor a strong band behind knees and step back until it supports you.",
+    "form_cues": "Sit back while keeping shins relatively upright. Keep torso tall and drive through the feet."
+  },
+  {
+    "category": "Quadriceps",
+    "name": "Wall Sit",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Glutes",
+    "equipment": "Wall",
+    "exercise_type": "Isolation",
+    "setup": "Slide down a wall until knees are near a comfortable bend.",
+    "form_cues": "Keep full back supported and feet planted. Hold without letting knees collapse inward."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Lying Leg Curl",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Calves",
+    "equipment": "Lying leg curl machine",
+    "exercise_type": "Isolation",
+    "setup": "Align knees with machine pivot and pad just above heels.",
+    "form_cues": "Curl heels toward glutes without lifting hips from pad. Lower slowly."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Seated Leg Curl",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Calves",
+    "equipment": "Seated leg curl machine",
+    "exercise_type": "Isolation",
+    "setup": "Adjust knee pivot and thigh pad snugly.",
+    "form_cues": "Curl heels down and back. Keep hips against seat and control return."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Nordic Hamstring Curl",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Glutes, calves",
+    "equipment": "Bodyweight, secure ankle anchor",
+    "exercise_type": "Compound",
+    "setup": "Secure ankles under a heavy fixed object or with a partner.",
+    "form_cues": "Keep hips extended and body straight from knees to head. Lower slowly using hamstrings and catch yourself with hands as needed."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Single-Leg Romanian Deadlift",
+    "primary_muscles": "Hamstrings, glutes",
+    "secondary_muscles": "Core, spinal erectors",
+    "equipment": "Dumbbell or kettlebell optional",
+    "exercise_type": "Compound",
+    "setup": "Stand on one leg with a soft knee and hold weight in opposite or same hand.",
+    "form_cues": "Hinge at the hip while rear leg extends behind. Keep hips square and spine neutral."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Glute-Ham Raise",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Glutes, calves",
+    "equipment": "Glute-ham developer",
+    "exercise_type": "Compound",
+    "setup": "Set knees slightly behind the pad and ankles secured.",
+    "form_cues": "Lower torso under hamstring control while keeping hips extended. Pull back up using hamstrings rather than bending at the waist."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Stability Ball Leg Curl",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Glutes, core",
+    "equipment": "Stability ball",
+    "exercise_type": "Compound",
+    "setup": "Lie on back with heels on ball and hips lifted.",
+    "form_cues": "Curl ball toward hips while keeping hips elevated. Extend legs slowly without dropping the pelvis."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Slider Leg Curl",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Glutes, core",
+    "equipment": "Sliders or towels on smooth floor",
+    "exercise_type": "Compound",
+    "setup": "Lie on back with heels on sliders and hips raised.",
+    "form_cues": "Slide heels away and back while keeping hips elevated as much as possible."
+  },
+  {
+    "category": "Hamstrings",
+    "name": "Good Morning",
+    "primary_muscles": "Hamstrings, spinal erectors",
+    "secondary_muscles": "Glutes",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Set bar across upper back and brace.",
+    "form_cues": "Push hips backward with knees softly bent. Keep back neutral and stop at a strong hamstring stretch."
+  },
+  {
+    "category": "Glutes",
+    "name": "Barbell Hip Thrust",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings, adductors",
+    "equipment": "Barbell, bench, pad",
+    "exercise_type": "Compound",
+    "setup": "Upper back rests on a stable bench. Roll padded bar over hips and plant feet around shoulder width.",
+    "form_cues": "Tuck chin slightly. Drive hips upward until torso is roughly parallel to floor. Finish by squeezing glutes, not overextending low back."
+  },
+  {
+    "category": "Glutes",
+    "name": "Dumbbell Hip Thrust",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings",
+    "equipment": "Dumbbell, bench",
+    "exercise_type": "Compound",
+    "setup": "Place upper back on bench and dumbbell securely across hips.",
+    "form_cues": "Drive through heels or midfoot. Keep ribs down and squeeze glutes at the top."
+  },
+  {
+    "category": "Glutes",
+    "name": "Glute Bridge",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings",
+    "equipment": "Bodyweight or weight",
+    "exercise_type": "Compound",
+    "setup": "Lie on back with knees bent and feet flat.",
+    "form_cues": "Drive hips upward while keeping ribs down. Stop when hips are fully extended without arching the back."
+  },
+  {
+    "category": "Glutes",
+    "name": "Single-Leg Glute Bridge",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Lie on back with one foot planted and opposite leg raised.",
+    "form_cues": "Drive through planted foot and keep hips level. Avoid rotating the pelvis."
+  },
+  {
+    "category": "Glutes",
+    "name": "Cable Pull-Through",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings, spinal erectors",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Compound",
+    "setup": "Set cable low, face away, and straddle rope.",
+    "form_cues": "Hinge hips back as rope passes between legs. Drive hips forward to stand without leaning back."
+  },
+  {
+    "category": "Glutes",
+    "name": "Cable Kickback",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings",
+    "equipment": "Cable machine, ankle strap",
+    "exercise_type": "Isolation",
+    "setup": "Attach ankle strap to low cable and hold support.",
+    "form_cues": "Extend leg backward from the hip without arching the low back or rotating the pelvis."
+  },
+  {
+    "category": "Glutes",
+    "name": "Hip Abduction Machine",
+    "primary_muscles": "Glute medius/minimus",
+    "secondary_muscles": "Glute max",
+    "equipment": "Hip abduction machine",
+    "exercise_type": "Isolation",
+    "setup": "Sit with pads outside knees and back supported.",
+    "form_cues": "Press knees outward under control. Avoid bouncing at end range."
+  },
+  {
+    "category": "Glutes",
+    "name": "Banded Lateral Walk",
+    "primary_muscles": "Glute medius",
+    "secondary_muscles": "Glute max, quads",
+    "equipment": "Mini resistance band",
+    "exercise_type": "Isolation",
+    "setup": "Place mini band above knees or around ankles.",
+    "form_cues": "Use a slight squat. Step sideways while keeping toes forward and constant band tension."
+  },
+  {
+    "category": "Glutes",
+    "name": "Clamshell",
+    "primary_muscles": "Glute medius",
+    "secondary_muscles": "Glute minimus",
+    "equipment": "Bodyweight or mini band",
+    "exercise_type": "Isolation",
+    "setup": "Lie on side with knees bent and hips stacked.",
+    "form_cues": "Keep feet together while opening top knee. Do not roll pelvis backward."
+  },
+  {
+    "category": "Glutes",
+    "name": "Frog Pump",
+    "primary_muscles": "Glutes",
+    "secondary_muscles": "Hamstrings",
+    "equipment": "Bodyweight or dumbbell",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back with soles of feet together and knees opened outward.",
+    "form_cues": "Drive hips up by squeezing glutes. Keep range controlled and ribs down."
+  },
+  {
+    "category": "Calves",
+    "name": "Standing Calf Raise",
+    "primary_muscles": "Gastrocnemius",
+    "secondary_muscles": "Soleus",
+    "equipment": "Calf raise machine or weights",
+    "exercise_type": "Isolation",
+    "setup": "Stand on a stable platform with balls of feet supported and heels free.",
+    "form_cues": "Lower heels under control, then rise as high as possible through the big toe. Avoid bouncing."
+  },
+  {
+    "category": "Calves",
+    "name": "Seated Calf Raise",
+    "primary_muscles": "Soleus",
+    "secondary_muscles": "Gastrocnemius",
+    "equipment": "Seated calf raise machine",
+    "exercise_type": "Isolation",
+    "setup": "Place balls of feet on platform with knees bent and pad over thighs.",
+    "form_cues": "Lower heels deeply under control, then press up through toes."
+  },
+  {
+    "category": "Calves",
+    "name": "Single-Leg Calf Raise",
+    "primary_muscles": "Calves",
+    "secondary_muscles": "Foot stabilizers",
+    "equipment": "Bodyweight or dumbbell",
+    "exercise_type": "Isolation",
+    "setup": "Stand on one foot near support.",
+    "form_cues": "Use full controlled range. Keep ankle from rolling outward and press through the big toe."
+  },
+  {
+    "category": "Calves",
+    "name": "Donkey Calf Raise",
+    "primary_muscles": "Gastrocnemius",
+    "secondary_muscles": "Soleus",
+    "equipment": "Machine or weighted setup",
+    "exercise_type": "Isolation",
+    "setup": "Hinge torso forward with hips supported or use a donkey calf machine.",
+    "form_cues": "Move only at ankles. Lower heels and rise fully without bouncing."
+  },
+  {
+    "category": "Adductors",
+    "name": "Hip Adduction Machine",
+    "primary_muscles": "Adductors",
+    "secondary_muscles": "None",
+    "equipment": "Hip adduction machine",
+    "exercise_type": "Isolation",
+    "setup": "Sit with pads inside knees and choose a comfortable starting width.",
+    "form_cues": "Bring legs together smoothly. Control the return and avoid forcing an extreme stretch."
+  },
+  {
+    "category": "Adductors",
+    "name": "Copenhagen Plank",
+    "primary_muscles": "Adductors",
+    "secondary_muscles": "Obliques, core",
+    "equipment": "Bench",
+    "exercise_type": "Compound",
+    "setup": "Lie sideways with top leg supported on a bench and forearm on floor.",
+    "form_cues": "Lift hips so body is straight. Keep top leg pressing into bench and avoid sagging."
+  },
+  {
+    "category": "Adductors",
+    "name": "Lateral Lunge",
+    "primary_muscles": "Adductors, glutes",
+    "secondary_muscles": "Quads, hamstrings",
+    "equipment": "Bodyweight or dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Take a wide stance or step far to one side.",
+    "form_cues": "Sit hips back over the working leg while other leg stays straighter. Keep working foot flat."
+  },
+  {
+    "category": "Core",
+    "name": "Plank",
+    "primary_muscles": "Abdominals",
+    "secondary_muscles": "Obliques, glutes, shoulders",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Set forearms on floor with elbows under shoulders and legs extended.",
+    "form_cues": "Squeeze glutes and brace abs. Keep body straight and avoid letting hips sag or pike."
+  },
+  {
+    "category": "Core",
+    "name": "Side Plank",
+    "primary_muscles": "Obliques",
+    "secondary_muscles": "Glute medius, shoulders",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Lie on side with elbow under shoulder and legs stacked or staggered.",
+    "form_cues": "Lift hips until body is straight. Keep chest facing forward and do not rotate downward."
+  },
+  {
+    "category": "Core",
+    "name": "Dead Bug",
+    "primary_muscles": "Deep core",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back with hips and knees at 90 degrees and arms toward ceiling.",
+    "form_cues": "Press low back gently into floor. Extend opposite arm and leg without losing trunk position."
+  },
+  {
+    "category": "Core",
+    "name": "Bird Dog",
+    "primary_muscles": "Deep core",
+    "secondary_muscles": "Glutes, spinal stabilizers",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Start on hands and knees.",
+    "form_cues": "Extend opposite arm and leg while keeping hips square. Avoid arching or rotating."
+  },
+  {
+    "category": "Core",
+    "name": "Hanging Knee Raise",
+    "primary_muscles": "Lower abdominals",
+    "secondary_muscles": "Hip flexors, grip",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Hang from a bar with shoulders active.",
+    "form_cues": "Curl pelvis upward as knees rise. Avoid swinging and control the lowering phase."
+  },
+  {
+    "category": "Core",
+    "name": "Hanging Leg Raise",
+    "primary_muscles": "Abdominals",
+    "secondary_muscles": "Hip flexors, grip",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Hang from bar with legs straight or slightly bent.",
+    "form_cues": "Raise legs while curling pelvis upward. Use controlled motion and avoid momentum."
+  },
+  {
+    "category": "Core",
+    "name": "Captain's Chair Knee Raise",
+    "primary_muscles": "Abdominals",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Captain's chair",
+    "exercise_type": "Compound",
+    "setup": "Support forearms on pads with back against support.",
+    "form_cues": "Raise knees by curling pelvis. Do not just flex at the hips."
+  },
+  {
+    "category": "Core",
+    "name": "Cable Crunch",
+    "primary_muscles": "Rectus abdominis",
+    "secondary_muscles": "Obliques",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Isolation",
+    "setup": "Kneel facing a high pulley with rope beside the head.",
+    "form_cues": "Crunch ribs toward pelvis. Keep hips relatively fixed and avoid pulling only with arms."
+  },
+  {
+    "category": "Core",
+    "name": "Ab Wheel Rollout",
+    "primary_muscles": "Abdominals",
+    "secondary_muscles": "Lats, shoulders, hip flexors",
+    "equipment": "Ab wheel",
+    "exercise_type": "Compound",
+    "setup": "Kneel with wheel under shoulders.",
+    "form_cues": "Brace and roll forward while keeping hips from sagging. Reverse before losing spinal position."
+  },
+  {
+    "category": "Core",
+    "name": "Pallof Press",
+    "primary_muscles": "Obliques, deep core",
+    "secondary_muscles": "Shoulders",
+    "equipment": "Cable or resistance band",
+    "exercise_type": "Isolation",
+    "setup": "Stand sideways to an anchored cable or band and hold handle at chest.",
+    "form_cues": "Press arms forward without letting torso rotate toward the anchor."
+  },
+  {
+    "category": "Core",
+    "name": "Russian Twist",
+    "primary_muscles": "Obliques",
+    "secondary_muscles": "Abdominals, hip flexors",
+    "equipment": "Bodyweight or medicine ball",
+    "exercise_type": "Isolation",
+    "setup": "Sit with torso leaned back slightly and spine tall.",
+    "form_cues": "Rotate the ribcage side to side rather than just moving the hands. Keep movement controlled."
+  },
+  {
+    "category": "Core",
+    "name": "Bicycle Crunch",
+    "primary_muscles": "Abdominals, obliques",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back with hands lightly behind head.",
+    "form_cues": "Rotate shoulder toward opposite knee while extending the other leg. Do not pull on neck."
+  },
+  {
+    "category": "Core",
+    "name": "Reverse Crunch",
+    "primary_muscles": "Lower abdominals",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back with hips and knees bent.",
+    "form_cues": "Curl pelvis off the floor by bringing knees toward chest. Avoid swinging legs."
+  },
+  {
+    "category": "Core",
+    "name": "Hollow Body Hold",
+    "primary_muscles": "Abdominals",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back and press low back into floor.",
+    "form_cues": "Lift shoulders and legs while maintaining low-back contact. Bend knees if needed."
+  },
+  {
+    "category": "Core",
+    "name": "Mountain Climber",
+    "primary_muscles": "Core",
+    "secondary_muscles": "Hip flexors, shoulders, quads",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Start in a high plank.",
+    "form_cues": "Drive knees forward alternately while keeping hips relatively level. Move faster only if trunk stays controlled."
+  },
+  {
+    "category": "Core",
+    "name": "Suitcase March",
+    "primary_muscles": "Obliques",
+    "secondary_muscles": "Grip, hip stabilizers",
+    "equipment": "Dumbbell or kettlebell",
+    "exercise_type": "Compound",
+    "setup": "Hold one heavy weight at your side and stand tall.",
+    "form_cues": "March slowly without leaning. Keep ribs stacked over pelvis."
+  },
+  {
+    "category": "Full Body",
+    "name": "Kettlebell Swing",
+    "primary_muscles": "Glutes, hamstrings",
+    "secondary_muscles": "Core, lats, forearms",
+    "equipment": "Kettlebell",
+    "exercise_type": "Compound",
+    "setup": "Set kettlebell a foot or two in front. Hinge and hike it back between legs.",
+    "form_cues": "Snap hips forward to propel the bell. Arms guide rather than lift. Keep spine neutral and avoid squatting the swing."
+  },
+  {
+    "category": "Full Body",
+    "name": "Dumbbell Thruster",
+    "primary_muscles": "Quads, shoulders",
+    "secondary_muscles": "Glutes, triceps, core",
+    "equipment": "Dumbbells",
+    "exercise_type": "Compound",
+    "setup": "Hold dumbbells at shoulders and stand in squat stance.",
+    "form_cues": "Squat, then drive upward and use leg momentum to press overhead. Finish with ribs controlled."
+  },
+  {
+    "category": "Full Body",
+    "name": "Barbell Thruster",
+    "primary_muscles": "Quads, shoulders",
+    "secondary_muscles": "Glutes, triceps, core",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Hold bar in front rack position.",
+    "form_cues": "Descend into front squat. Drive up powerfully and transition into an overhead press."
+  },
+  {
+    "category": "Full Body",
+    "name": "Burpee",
+    "primary_muscles": "Full body",
+    "secondary_muscles": "Chest, shoulders, quads, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand with room to move.",
+    "form_cues": "Squat down, place hands, step or jump to plank, perform optional push-up, return feet forward, then stand or jump. Keep landings controlled."
+  },
+  {
+    "category": "Full Body",
+    "name": "Bear Crawl",
+    "primary_muscles": "Core, shoulders",
+    "secondary_muscles": "Quads, triceps, hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Start on hands and feet with knees hovering just off the ground.",
+    "form_cues": "Move opposite hand and foot together. Keep hips low and trunk stable."
+  },
+  {
+    "category": "Full Body",
+    "name": "Sled Push",
+    "primary_muscles": "Quads, glutes",
+    "secondary_muscles": "Calves, core, shoulders",
+    "equipment": "Weighted sled",
+    "exercise_type": "Compound",
+    "setup": "Load sled and grip handles firmly.",
+    "form_cues": "Lean forward from ankles, keep spine neutral, and drive short powerful steps through the floor."
+  },
+  {
+    "category": "Full Body",
+    "name": "Sled Pull",
+    "primary_muscles": "Posterior chain",
+    "secondary_muscles": "Back, grip, calves",
+    "equipment": "Weighted sled, strap or handles",
+    "exercise_type": "Compound",
+    "setup": "Attach strap or grip handles securely.",
+    "form_cues": "Walk backward or forward depending variation. Keep torso controlled and maintain steady steps."
+  },
+  {
+    "category": "Full Body",
+    "name": "Battle Rope Waves",
+    "primary_muscles": "Shoulders",
+    "secondary_muscles": "Arms, core, upper back",
+    "equipment": "Battle ropes",
+    "exercise_type": "Compound",
+    "setup": "Anchor ropes securely and hold one end in each hand.",
+    "form_cues": "Create waves using quick arm motion while maintaining a soft-knee athletic stance and braced torso."
+  },
+  {
+    "category": "Full Body",
+    "name": "Medicine Ball Slam",
+    "primary_muscles": "Lats, core",
+    "secondary_muscles": "Shoulders, triceps, legs",
+    "equipment": "Slam ball",
+    "exercise_type": "Compound",
+    "setup": "Use a non-bouncing slam ball in open space.",
+    "form_cues": "Raise ball overhead without overextending. Slam using trunk and arms, then pick it up with a squat or hinge."
+  },
+  {
+    "category": "Full Body",
+    "name": "Turkish Get-Up",
+    "primary_muscles": "Shoulders, core",
+    "secondary_muscles": "Glutes, quads, triceps",
+    "equipment": "Kettlebell or dumbbell",
+    "exercise_type": "Compound",
+    "setup": "Lie on back holding weight vertically in one hand with same-side knee bent.",
+    "form_cues": "Keep eyes on the weight initially. Move through elbow, hand, bridge, kneel, then stand. Reverse the sequence slowly. Use light weight until technique is mastered."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Power Clean",
+    "primary_muscles": "Glutes, quads, traps",
+    "secondary_muscles": "Hamstrings, shoulders, core",
+    "equipment": "Barbell, bumper plates",
+    "exercise_type": "Compound",
+    "setup": "Start bar over midfoot with a clean grip. Hips above knees and shoulders slightly over bar.",
+    "form_cues": "Push from floor, keep bar close, then extend hips and knees powerfully. Pull under and catch on shoulders with knees bent. This lift benefits from qualified coaching."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Hang Power Clean",
+    "primary_muscles": "Glutes, quads, traps",
+    "secondary_muscles": "Hamstrings, shoulders, core",
+    "equipment": "Barbell, bumper plates",
+    "exercise_type": "Compound",
+    "setup": "Start standing with bar at thighs, then hinge to a hang position above or below knees.",
+    "form_cues": "Drive through hips and legs, keep bar close, and catch in a partial squat on the shoulders."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Clean and Jerk",
+    "primary_muscles": "Full body",
+    "secondary_muscles": "Shoulders, triceps, core",
+    "equipment": "Barbell, bumper plates",
+    "exercise_type": "Compound",
+    "setup": "Perform a clean to the front rack, stand fully, then prepare for the jerk.",
+    "form_cues": "Dip vertically, drive through legs, and punch under the bar to locked arms. Recover under control. Qualified coaching is strongly recommended."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Snatch",
+    "primary_muscles": "Full body",
+    "secondary_muscles": "Shoulders, upper back, core",
+    "equipment": "Barbell, bumper plates",
+    "exercise_type": "Compound",
+    "setup": "Use a wide grip and start bar over midfoot with shoulders over bar.",
+    "form_cues": "Keep bar close, extend explosively, and pull under into an overhead squat catch. This is highly technical and should be learned with coaching."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Hang Power Snatch",
+    "primary_muscles": "Glutes, traps, shoulders",
+    "secondary_muscles": "Hamstrings, core",
+    "equipment": "Barbell, bumper plates",
+    "exercise_type": "Compound",
+    "setup": "Start from a standing hang position with a wide snatch grip.",
+    "form_cues": "Explode through hips and knees, keep bar close, then pull under to catch overhead in a partial squat."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Push Press",
+    "primary_muscles": "Shoulders",
+    "secondary_muscles": "Triceps, quads, glutes",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Start bar in front rack position.",
+    "form_cues": "Dip a few inches with torso upright, then drive through legs and press bar overhead."
+  },
+  {
+    "category": "Olympic Lifting",
+    "name": "Push Jerk",
+    "primary_muscles": "Shoulders, legs",
+    "secondary_muscles": "Triceps, core",
+    "equipment": "Barbell",
+    "exercise_type": "Compound",
+    "setup": "Start in front rack.",
+    "form_cues": "Dip and drive upward, then quickly re-bend knees to catch bar overhead before standing fully."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Pause Bench Press",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, front delts",
+    "equipment": "Barbell, bench, rack",
+    "exercise_type": "Compound",
+    "setup": "Set up like a standard bench press.",
+    "form_cues": "Lower to chest and pause motionless for about 1 to 2 seconds without relaxing. Press while maintaining tightness."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Tempo Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Adductors, core",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Set up like a normal squat.",
+    "form_cues": "Use a controlled prescribed descent, such as 3 seconds, then stand with normal or prescribed tempo. Keep position consistent."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Paused Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Core, adductors",
+    "equipment": "Barbell, rack",
+    "exercise_type": "Compound",
+    "setup": "Use normal squat setup.",
+    "form_cues": "Pause at the bottom without relaxing or bouncing. Maintain bracing, then drive upward."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Block Pull",
+    "primary_muscles": "Glutes, spinal erectors",
+    "secondary_muscles": "Hamstrings, lats, traps",
+    "equipment": "Barbell, blocks",
+    "exercise_type": "Compound",
+    "setup": "Set bar on sturdy blocks around mid-shin to knee height.",
+    "form_cues": "Brace and pull like a deadlift. Keep bar close and avoid overextending at lockout."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Rack Pull",
+    "primary_muscles": "Glutes, spinal erectors",
+    "secondary_muscles": "Traps, hamstrings, lats",
+    "equipment": "Barbell, power rack",
+    "exercise_type": "Compound",
+    "setup": "Set safety pins at the desired height and place bar on them.",
+    "form_cues": "Brace before pulling. Stand tall with the bar close. Do not slam the bar onto safeties."
+  },
+  {
+    "category": "Powerlifting",
+    "name": "Deficit Deadlift",
+    "primary_muscles": "Hamstrings, glutes",
+    "secondary_muscles": "Quads, spinal erectors",
+    "equipment": "Barbell, small platform",
+    "exercise_type": "Compound",
+    "setup": "Stand on a stable low platform, usually 1 to 2 inches.",
+    "form_cues": "Maintain normal deadlift positioning. Use only a deficit that allows a neutral spine and strong start position."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Bodyweight Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Core, adductors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand around shoulder width with toes slightly turned out.",
+    "form_cues": "Sit down between hips. Keep feet flat and knees tracking over toes."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Pistol Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Core, hamstrings",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand on one leg with other leg extended forward.",
+    "form_cues": "Sit down under control while keeping working foot planted. Use support or a box until balance and strength are adequate."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Assisted Pistol Squat",
+    "primary_muscles": "Quadriceps, glutes",
+    "secondary_muscles": "Core, hamstrings",
+    "equipment": "Bodyweight, support",
+    "exercise_type": "Compound",
+    "setup": "Hold a rack, strap, or doorframe lightly for balance.",
+    "form_cues": "Use the support only as needed. Keep knee tracking over toes and stand through the whole foot."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Dips",
+    "primary_muscles": "Triceps, chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Dip bars",
+    "exercise_type": "Compound",
+    "setup": "Support body on parallel bars.",
+    "form_cues": "Lower under control to a comfortable shoulder depth and press back up without swinging."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Muscle-Up",
+    "primary_muscles": "Lats, chest, triceps",
+    "secondary_muscles": "Biceps, shoulders, core",
+    "equipment": "Pull-up bar or rings",
+    "exercise_type": "Compound",
+    "setup": "Begin from a strong hang. A strict muscle-up requires a high pull followed by a transition over the bar or rings.",
+    "form_cues": "Pull explosively with the bar close, transition chest over the support, then press out. Build pull-ups and dips first and avoid uncontrolled kipping when learning."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Ring Row",
+    "primary_muscles": "Mid back, lats",
+    "secondary_muscles": "Biceps, rear delts, core",
+    "equipment": "Gymnastic rings",
+    "exercise_type": "Compound",
+    "setup": "Set rings around waist height and lean back with body straight.",
+    "form_cues": "Pull rings toward ribs while keeping shoulders down. Adjust foot position to change difficulty."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Ring Push-Up",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Triceps, shoulders, core",
+    "equipment": "Gymnastic rings",
+    "exercise_type": "Compound",
+    "setup": "Set rings low and assume push-up position.",
+    "form_cues": "Keep rings stable and close to body. Lower under control and press while preventing excessive wobble."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "L-Sit",
+    "primary_muscles": "Hip flexors, core",
+    "secondary_muscles": "Triceps, quads",
+    "equipment": "Parallettes, dip bars, or floor",
+    "exercise_type": "Isolation",
+    "setup": "Support body on straight arms with legs extended forward.",
+    "form_cues": "Push shoulders down and lift legs using core and hip flexors. Bend knees for an easier variation."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Handstand Hold",
+    "primary_muscles": "Shoulders",
+    "secondary_muscles": "Triceps, core, upper back",
+    "equipment": "Wall optional",
+    "exercise_type": "Compound",
+    "setup": "Kick up against a wall or use a controlled freestanding entry.",
+    "form_cues": "Push tall through shoulders, squeeze glutes, and keep ribs controlled. Practice in a clear area."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Handstand Push-Up",
+    "primary_muscles": "Shoulders",
+    "secondary_muscles": "Triceps, upper chest, core",
+    "equipment": "Wall or parallettes",
+    "exercise_type": "Compound",
+    "setup": "Start in a stable handstand against a wall or freestanding.",
+    "form_cues": "Lower head between hands while elbows track naturally. Press back to lockout. Use partial range or pike push-ups first."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Pike Push-Up",
+    "primary_muscles": "Shoulders",
+    "secondary_muscles": "Triceps, upper chest",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Start in an inverted V with hips high.",
+    "form_cues": "Lower head toward the floor slightly in front of hands. Keep elbows controlled and press back up."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Planche Lean",
+    "primary_muscles": "Shoulders, chest",
+    "secondary_muscles": "Core, wrists, triceps",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Start in a push-up position with fingers spread.",
+    "form_cues": "Lean shoulders forward past wrists while keeping elbows locked and body tight. Use gradual loading to protect wrists."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Tuck Front Lever Hold",
+    "primary_muscles": "Lats, core",
+    "secondary_muscles": "Biceps, rear delts",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Hang from a bar and pull shoulders down.",
+    "form_cues": "Tuck knees toward chest and lift hips until torso approaches horizontal. Keep arms straight and avoid swinging."
+  },
+  {
+    "category": "Calisthenics",
+    "name": "Skin the Cat",
+    "primary_muscles": "Shoulders, lats",
+    "secondary_muscles": "Core, biceps",
+    "equipment": "Gymnastic rings or pull-up bar",
+    "exercise_type": "Compound",
+    "setup": "Begin hanging with secure grip.",
+    "form_cues": "Raise legs and rotate body through the arms into a controlled shoulder stretch, then reverse. Use a small range initially and stop if shoulders feel strained."
+  },
+  {
+    "category": "Cardio",
+    "name": "Treadmill Run",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Quads, glutes, calves, hamstrings",
+    "equipment": "Treadmill",
+    "exercise_type": "Compound",
+    "setup": "Set speed and incline appropriate to ability. Clip safety key if provided.",
+    "form_cues": "Run with relaxed shoulders and short natural stride. Land under the body rather than reaching far ahead."
+  },
+  {
+    "category": "Cardio",
+    "name": "Outdoor Run",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Quads, glutes, calves, hamstrings",
+    "equipment": "Running shoes optional",
+    "exercise_type": "Compound",
+    "setup": "Choose a safe route and appropriate pace.",
+    "form_cues": "Keep posture tall and relaxed. Increase distance or intensity gradually."
+  },
+  {
+    "category": "Cardio",
+    "name": "Stationary Bike",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Quadriceps, glutes",
+    "equipment": "Stationary bicycle",
+    "exercise_type": "Compound",
+    "setup": "Adjust seat so knee remains slightly bent at the bottom of the pedal stroke.",
+    "form_cues": "Pedal smoothly. Avoid rocking hips side to side."
+  },
+  {
+    "category": "Cardio",
+    "name": "Rowing Machine",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Quads, glutes, back, biceps",
+    "equipment": "Rowing ergometer",
+    "exercise_type": "Compound",
+    "setup": "Strap feet in and hold handle with straight wrists.",
+    "form_cues": "Sequence each stroke as legs, body, arms. Return as arms, body, legs. Avoid opening the back too early."
+  },
+  {
+    "category": "Cardio",
+    "name": "Elliptical",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Quads, glutes, calves",
+    "equipment": "Elliptical machine",
+    "exercise_type": "Compound",
+    "setup": "Step securely onto pedals and hold handles if needed.",
+    "form_cues": "Use smooth strides and keep torso upright. Avoid leaning heavily on handles."
+  },
+  {
+    "category": "Cardio",
+    "name": "Stair Climber",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Glutes, quads, calves",
+    "equipment": "Stair climber machine",
+    "exercise_type": "Compound",
+    "setup": "Set a manageable speed and lightly hold rails if needed.",
+    "form_cues": "Stand tall and place most of each foot on the step. Avoid supporting bodyweight through the rails."
+  },
+  {
+    "category": "Cardio",
+    "name": "Jump Rope",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Calves, shoulders, forearms",
+    "equipment": "Jump rope",
+    "exercise_type": "Compound",
+    "setup": "Use a rope length that clears the head and feet comfortably.",
+    "form_cues": "Jump low on the balls of the feet. Turn rope mostly from wrists and keep elbows near sides."
+  },
+  {
+    "category": "Cardio",
+    "name": "High Knees",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Hip flexors, calves, quads",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand tall with space to move.",
+    "form_cues": "Drive knees upward quickly while keeping posture tall and landing softly."
+  },
+  {
+    "category": "Cardio",
+    "name": "Jumping Jacks",
+    "primary_muscles": "Cardiovascular system",
+    "secondary_muscles": "Calves, shoulders, hip abductors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand upright with arms at sides.",
+    "form_cues": "Jump feet apart as arms rise overhead, then return. Land softly and maintain rhythm."
+  },
+  {
+    "category": "Cardio",
+    "name": "Box Jump",
+    "primary_muscles": "Glutes, quads",
+    "secondary_muscles": "Calves, hamstrings",
+    "equipment": "Plyometric box",
+    "exercise_type": "Compound",
+    "setup": "Use a stable box at a conservative height.",
+    "form_cues": "Swing arms and jump onto box with both feet. Land softly with knees tracking over toes. Step down rather than jumping down when possible."
+  },
+  {
+    "category": "Cardio",
+    "name": "Broad Jump",
+    "primary_muscles": "Glutes, quads",
+    "secondary_muscles": "Hamstrings, calves",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand with feet around hip width and clear landing space.",
+    "form_cues": "Load hips and swing arms, then jump forward. Land softly with knees bent and balanced."
+  },
+  {
+    "category": "Cardio",
+    "name": "Skater Jump",
+    "primary_muscles": "Glutes, quads",
+    "secondary_muscles": "Calves, adductors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Stand on one leg and prepare to jump laterally.",
+    "form_cues": "Leap side to side, landing softly on one foot. Keep knee aligned with toes and torso controlled."
+  },
+  {
+    "category": "Mobility",
+    "name": "World's Greatest Stretch",
+    "primary_muscles": "Hip flexors, hamstrings",
+    "secondary_muscles": "Thoracic spine, glutes",
+    "equipment": "Bodyweight",
+    "exercise_type": "Mobility",
+    "setup": "Start in a long lunge with hands near the front foot.",
+    "form_cues": "Rotate the chest toward the front leg and reach upward. Move slowly and do not force range."
+  },
+  {
+    "category": "Mobility",
+    "name": "90/90 Hip Switch",
+    "primary_muscles": "Hip rotators",
+    "secondary_muscles": "Glutes, adductors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Mobility",
+    "setup": "Sit with both knees bent around 90 degrees, one in front and one to side.",
+    "form_cues": "Rotate knees from side to side while keeping torso as tall as possible."
+  },
+  {
+    "category": "Mobility",
+    "name": "Couch Stretch",
+    "primary_muscles": "Hip flexors, quadriceps",
+    "secondary_muscles": "Glutes",
+    "equipment": "Wall or bench",
+    "exercise_type": "Mobility",
+    "setup": "Place one knee near a wall with shin upward and opposite foot in front.",
+    "form_cues": "Squeeze rear-leg glute and keep ribs down. Increase torso height gradually."
+  },
+  {
+    "category": "Mobility",
+    "name": "Standing Quad Stretch",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Hip flexors",
+    "equipment": "Bodyweight",
+    "exercise_type": "Mobility",
+    "setup": "Stand near support and grasp one ankle behind you.",
+    "form_cues": "Keep knees close and pelvis neutral. Do not yank the heel toward the glute."
+  },
+  {
+    "category": "Mobility",
+    "name": "Hamstring Stretch",
+    "primary_muscles": "Hamstrings",
+    "secondary_muscles": "Calves",
+    "equipment": "Bodyweight",
+    "exercise_type": "Mobility",
+    "setup": "Place heel on a low surface or extend one leg while seated.",
+    "form_cues": "Hinge from the hips with a neutral back until a gentle stretch is felt."
+  },
+  {
+    "category": "Mobility",
+    "name": "Calf Stretch",
+    "primary_muscles": "Calves",
+    "secondary_muscles": "Achilles tendon",
+    "equipment": "Wall",
+    "exercise_type": "Mobility",
+    "setup": "Place hands on wall and step one foot back.",
+    "form_cues": "Keep rear heel down and knee straight for gastrocnemius, or slightly bent for soleus."
+  },
+  {
+    "category": "Mobility",
+    "name": "Doorway Pec Stretch",
+    "primary_muscles": "Chest",
+    "secondary_muscles": "Front delts",
+    "equipment": "Doorway",
+    "exercise_type": "Mobility",
+    "setup": "Place forearm on a doorway with elbow around shoulder height.",
+    "form_cues": "Step forward gently until chest stretches. Avoid forcing the shoulder backward."
+  },
+  {
+    "category": "Mobility",
+    "name": "Lat Stretch on Bench",
+    "primary_muscles": "Lats",
+    "secondary_muscles": "Triceps, thoracic spine",
+    "equipment": "Bench",
+    "exercise_type": "Mobility",
+    "setup": "Kneel in front of bench and place elbows or hands on it.",
+    "form_cues": "Sit hips back while dropping chest between arms. Keep ribs controlled."
+  },
+  {
+    "category": "Mobility",
+    "name": "Thoracic Rotation",
+    "primary_muscles": "Thoracic spine",
+    "secondary_muscles": "Shoulders",
+    "equipment": "Bodyweight",
+    "exercise_type": "Mobility",
+    "setup": "Start on hands and knees or side-lying.",
+    "form_cues": "Rotate through the upper back while keeping hips relatively still."
+  },
+  {
+    "category": "Mobility",
+    "name": "Ankle Dorsiflexion Rock",
+    "primary_muscles": "Ankles",
+    "secondary_muscles": "Calves",
+    "equipment": "Wall optional",
+    "exercise_type": "Mobility",
+    "setup": "Stand in split stance with front foot flat.",
+    "form_cues": "Drive front knee over toes while heel stays down. Move in a straight line with knee tracking toes."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Band Pull-Apart",
+    "primary_muscles": "Rear delts, mid back",
+    "secondary_muscles": "Rotator cuff",
+    "equipment": "Resistance band",
+    "exercise_type": "Isolation",
+    "setup": "Hold a light band at shoulder height with arms straight.",
+    "form_cues": "Pull band apart by moving shoulder blades back and down. Avoid arching the lower back."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Scapular Push-Up",
+    "primary_muscles": "Serratus anterior",
+    "secondary_muscles": "Shoulders, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Start in plank with elbows straight.",
+    "form_cues": "Let shoulder blades move together slightly, then push floor away to spread them apart. Do not bend elbows."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Scapular Pull-Up",
+    "primary_muscles": "Lower traps, lats",
+    "secondary_muscles": "Serratus, grip",
+    "equipment": "Pull-up bar",
+    "exercise_type": "Isolation",
+    "setup": "Hang with elbows straight.",
+    "form_cues": "Pull shoulders down away from ears to lift body slightly. Keep elbows locked."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Face Pull to External Rotation",
+    "primary_muscles": "Rear delts, rotator cuff",
+    "secondary_muscles": "Mid traps",
+    "equipment": "Cable machine, rope",
+    "exercise_type": "Isolation",
+    "setup": "Set cable around face height.",
+    "form_cues": "Pull toward face, then rotate hands upward while keeping elbows high but comfortable. Use light weight."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Single-Leg Balance",
+    "primary_muscles": "Foot and ankle stabilizers",
+    "secondary_muscles": "Glute medius, core",
+    "equipment": "Bodyweight",
+    "exercise_type": "Isolation",
+    "setup": "Stand near support on one foot.",
+    "form_cues": "Keep tripod foot contact and knee softly bent. Progress by reducing support or adding gentle movement."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Banded Terminal Knee Extension",
+    "primary_muscles": "Quadriceps",
+    "secondary_muscles": "Knee stabilizers",
+    "equipment": "Resistance band",
+    "exercise_type": "Isolation",
+    "setup": "Anchor band behind knee and step back so knee begins slightly bent.",
+    "form_cues": "Straighten knee by contracting quadriceps. Keep foot planted and avoid snapping into hyperextension."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Tibialis Raise",
+    "primary_muscles": "Tibialis anterior",
+    "secondary_muscles": "Ankle dorsiflexors",
+    "equipment": "Wall or tibialis machine",
+    "exercise_type": "Isolation",
+    "setup": "Lean back against a wall with heels on floor and feet slightly forward.",
+    "form_cues": "Lift toes toward shins while heels remain planted. Lower slowly."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Heel-Elevated Toe Raise",
+    "primary_muscles": "Tibialis anterior",
+    "secondary_muscles": "Ankle stabilizers",
+    "equipment": "Small plate or wedge",
+    "exercise_type": "Isolation",
+    "setup": "Stand with heels on a small raised surface and toes free.",
+    "form_cues": "Lift forefoot toward shins under control. Use support for balance."
+  },
+  {
+    "category": "Rehab & Stability",
+    "name": "Hip Airplane",
+    "primary_muscles": "Glute medius, hip rotators",
+    "secondary_muscles": "Core, hamstrings",
+    "equipment": "Bodyweight",
+    "exercise_type": "Compound",
+    "setup": "Balance on one leg and hinge forward into a single-leg RDL position.",
+    "form_cues": "Rotate pelvis open and closed slowly while keeping the stance foot stable. Use support when learning."
+  },
+  {
+    "category": "Neck",
+    "name": "Neck Flexion",
+    "primary_muscles": "Neck flexors",
+    "secondary_muscles": "Deep cervical flexors",
+    "equipment": "Light plate optional",
+    "exercise_type": "Isolation",
+    "setup": "Lie on back with head supported or slightly off edge if appropriate.",
+    "form_cues": "Gently tuck chin and flex neck through a small controlled range. Use very light resistance."
+  },
+  {
+    "category": "Neck",
+    "name": "Neck Extension",
+    "primary_muscles": "Neck extensors",
+    "secondary_muscles": "Upper traps",
+    "equipment": "Light resistance optional",
+    "exercise_type": "Isolation",
+    "setup": "Lie face down with head supported or use a dedicated neck machine.",
+    "form_cues": "Extend through a small comfortable range. Avoid jerking or loading heavily."
+  },
+  {
+    "category": "Neck",
+    "name": "Neck Lateral Flexion",
+    "primary_muscles": "Lateral neck muscles",
+    "secondary_muscles": "Upper traps",
+    "equipment": "Light resistance optional",
+    "exercise_type": "Isolation",
+    "setup": "Sit or lie with head neutral.",
+    "form_cues": "Tilt ear toward shoulder through a controlled range without rotating the head."
+  }
+]
