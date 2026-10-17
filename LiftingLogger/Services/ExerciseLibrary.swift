@@ -74,12 +74,12 @@ enum ExerciseLibrary {
     private static var jsonExerciseSeeds: [ExerciseSeed]? {
         guard let url = Bundle.main.url(forResource: "LiftingLogger_Exercise_Library", withExtension: "json"),
               let data = try? Data(contentsOf: url),
-              let entries = try? JSONDecoder().decode([ExerciseLibraryEntry].self, from: data) else {
+              let library = try? JSONDecoder().decode(ExerciseLibraryDocument.self, from: data) else {
             return nil
         }
 
         var seenNames = Set<String>()
-        let seeds = entries.compactMap { entry -> ExerciseSeed? in
+        let seeds = library.exercises.compactMap { entry -> ExerciseSeed? in
             let normalized = normalizedName(entry.name)
             guard !seenNames.contains(normalized) else { return nil }
             seenNames.insert(normalized)
@@ -128,24 +128,21 @@ enum ExerciseLibrary {
         )
     }
 
+    /// Filters exercises using advanced search algorithm
+    /// Returns exercises sorted by relevance score
+    static func searchExercises(_ exercises: [Exercise], searchText: String) -> [Exercise] {
+        return ExerciseSearchEngine.search(exercises, query: searchText)
+    }
+
+    /// Legacy method for backward compatibility - now uses advanced search
+    /// Returns true if exercise matches the search text
     static func matches(_ exercise: Exercise, searchText: String) -> Bool {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !query.isEmpty else { return true }
 
-        let searchableValues = [
-            exercise.name,
-            exercise.muscleGroup.rawValue,
-            exercise.equipment.rawValue,
-            details(for: exercise)?.primaryMuscles,
-            details(for: exercise)?.secondaryMuscles,
-            details(for: exercise)?.equipment,
-            details(for: exercise)?.exerciseType
-        ].compactMap(\.self)
-
-        return searchableValues.contains { value in
-            value.localizedCaseInsensitiveContains(query) ||
-            searchKey(for: value).contains(searchKey(for: query))
-        }
+        // Use the advanced search engine and check if this exercise is in the results
+        let results = ExerciseSearchEngine.search([exercise], query: query)
+        return !results.isEmpty
     }
 
     private static let fallbackExerciseSeeds: [ExerciseSeed] = [
@@ -163,6 +160,12 @@ enum ExerciseLibrary {
     ]
 
     private static let sectionMuscleGroups: [String: MuscleGroup] = [
+        "Full Body": .fullBody,
+        "Powerlifting": .fullBody,
+        "Mobility": .other,
+        "Rehab and Stability": .other,
+        "Adductors": .other,
+        "Neck": .other,
         "Chest": .chest,
         "Back": .back,
         "Shoulders": .shoulders,
@@ -227,16 +230,6 @@ enum ExerciseLibrary {
         name.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
     }
 
-    private static func searchKey(for text: String) -> String {
-        text
-            .folding(options: [.caseInsensitive, .diacriticInsensitive], locale: .current)
-            .components(separatedBy: CharacterSet.alphanumerics.inverted)
-            .map { component in
-                component.hasSuffix("s") ? String(component.dropLast()) : component
-            }
-            .joined()
-    }
-
     private static func inferredEquipment(for exerciseName: String) -> Equipment {
         let name = exerciseName.lowercased()
 
@@ -256,7 +249,7 @@ enum ExerciseLibrary {
             return .other
         }
 
-        if name.contains("resistance band") || name.contains("banded") || name.contains("band ") {
+        if name.contains("bands") || name == "band" || name.contains("resistance band") || name.contains("banded") || name.contains("band ") {
             return .resistanceBand
         }
 
@@ -346,6 +339,23 @@ struct ExerciseDetails: Codable, Equatable {
     let formCues: String
 }
 
+private struct ExerciseLibraryDocument: Decodable {
+    let exercises: [ExerciseLibraryEntry]
+
+    init(from decoder: Decoder) throws {
+        if let entries = try? decoder.singleValueContainer().decode([ExerciseLibraryEntry].self) {
+            exercises = entries
+        } else {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            exercises = try container.decode([ExerciseLibraryEntry].self, forKey: .exercises)
+        }
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case exercises
+    }
+}
+
 private struct ExerciseLibraryEntry: Decodable {
     let category: String
     let name: String
@@ -355,6 +365,24 @@ private struct ExerciseLibraryEntry: Decodable {
     let exerciseType: String
     let setup: String
     let formCues: String
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        func text(_ key: CodingKeys, separator: String = ", ") throws -> String {
+            if let values = try? container.decode([String].self, forKey: key) {
+                return values.joined(separator: separator)
+            }
+            return try container.decode(String.self, forKey: key)
+        }
+        category = try text(.category)
+        name = try text(.name)
+        primaryMuscles = try text(.primaryMuscles)
+        secondaryMuscles = try text(.secondaryMuscles)
+        equipment = try text(.equipment)
+        exerciseType = try text(.exerciseType)
+        setup = try text(.setup)
+        formCues = try text(.formCues, separator: "\n")
+    }
 
     private enum CodingKeys: String, CodingKey {
         case category

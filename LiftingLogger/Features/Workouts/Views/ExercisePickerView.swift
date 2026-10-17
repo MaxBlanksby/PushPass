@@ -14,9 +14,8 @@ struct ExercisePickerView: View {
     let onSelect: (Exercise) -> Void
 
     private var filteredExercises: [Exercise] {
-        exercises
-            .filter { !$0.isArchived }
-            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
+        let nonArchived = exercises.filter { !$0.isArchived }
+        return ExerciseLibrary.searchExercises(nonArchived, searchText: searchText)
     }
 
     var body: some View {

@@ -22,6 +22,8 @@ struct SettingsView: View {
                 Section("Privacy & Safety") {
                     Text("LiftingLogger is a fitness tracking and productivity app, not a medical service. Exercise within your abilities and stop if you experience pain, dizziness, or discomfort.")
                 }
+
+
             }
             .navigationTitle("Settings")
             .onDisappear {

@@ -240,9 +240,8 @@ private struct CustomWorkoutBuilderView: View {
     }
 
     private var availableExercises: [Exercise] {
-        allExercises
-            .filter { !$0.isArchived }
-            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
+        let nonArchived = allExercises.filter { !$0.isArchived }
+        return ExerciseLibrary.searchExercises(nonArchived, searchText: searchText)
     }
 
     private var selectedExercises: [Exercise] {

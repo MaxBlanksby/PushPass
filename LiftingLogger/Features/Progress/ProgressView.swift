@@ -13,9 +13,8 @@ struct ProgressView: View {
     }
 
     private var visibleExercises: [Exercise] {
-        exercises
-            .filter { !$0.isArchived }
-            .filter { ExerciseLibrary.matches($0, searchText: searchText) }
+        let nonArchived = exercises.filter { !$0.isArchived }
+        return ExerciseLibrary.searchExercises(nonArchived, searchText: searchText)
     }
 
     private var recentExercises: [RecentExercise] {
